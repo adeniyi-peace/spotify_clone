@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "styles.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block styles %}{% endblock styles %}
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
+        </div>
+        <div class="home-and-search">
+            <div>
+                <div class="home">
+                    <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25">
+                </div>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="What do you want to play?">
+                <h4><img src="{% static "browse icon.png" %}" alt="browse icon" width="30" height="30"></h4>
+            </div>
+        </div>
+
+        <div class="login-signup">
+            <a href="" class="signup"><strong>Sign up</strong></a>
+            <a href="" class="login"><strong>Log in</strong></a>
+        </div>
+    </header>
+
+
+    <section class="sidebar-main">
+        
+        <section class="sidebar">
+            <div class="your-library">
+                <div class="library-icon">
+                    <img src="{% static "library icon.png" %}" alt="library icon" width="30" height="30">
+                    <h4>Your Library</h4>
+                </div>
+                <h5 class="tag">Artists</h5>
+
+                <div class="space">
+                    <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                    
+                    <div>
+                        <h5>Recents</h5>
+                        <img src="{% static "recent icon.png" %}" alt="recent icon" width="30" height="30">
+                    </div>
+                </div>
+    
+                <div class="artists">
+                    <div class="artist-card">
+                        <a href="">
+                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                            
+                            <div class="artist-name">
+                                <h3>Artist name</h3>
+                                <p>artist</p>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="artist-card">
+                        <a href="">
+                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                            
+                            <div class="artist-name">
+                                <h3>Artist name</h3>
+                                <p>artist</p>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="artist-card">
+                        <a href="">
+                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                            
+                            <div class="artist-name">
+                                <h3>Artist name</h3>
+                                <p>artist</p>
+                            </div>
+                        </a>
+                    </div>
+        
+                    <div class="artist-card">
+                        <a href="">
+                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                            
+                            <div class="artist-name">
+                                <h3>Artist name</h3>
+                                <p>artist</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="main">
+            {% block contents %}{% endblock contents %}
+        </section>
+    </section>
+
+    <section class="play-area">
+        <div class="song">
+            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" width="50" height="50">
+            <div>
+                <h3>Artist name</h3>
+                <p>artist</p>
+            </div>
+        </div>
+
+        
+        <div class="play-control">
+            <div class="player-controls">
+                <button class="control-btn"><i class="fa fa-random" aria-hidden="true"></i></button>
+                <button id="prev" class="control-btn"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                <button id="play-pause" class="control-btn play-btn"><i class="fa fa-play-circle" aria-hidden="true"></i></button>
+                <button id="next" class="control-btn"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+                <button class="control-btn"><img src="{% static "repeat icon.png" %}" alt="repeat icon" width="30" height="30"></button>
+            </div>
+            
+            <div class="seek">
+                <span id="current-time">0:00</span>
+                
+    
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+        
+                
+                <span id="total-duration">4:00</span>
+                
+            </div>
+        
+    
+            <audio id="audio-player" src="audio-source-url"></audio>
+        </div>
+
+        <div class="other-things">
+            <h6>about artist</h6>
+            <h6>mic</h6>
+            <h6>track list</h6>
+            <h6> i dont know </h6>
+        </div>
+    </section>
+    
+    
+</body>
+</html>

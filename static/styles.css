@@ -1,0 +1,251 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    padding: 0  .5rem;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+
+/* header styles */
+header{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+header .logo img{
+    width: 2rem;
+    height: 2rem;
+}
+
+header .home-and-search{
+    display: flex;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+header .home-and-search .home,
+header .home-and-search .search input{
+    padding: .5rem .7rem;
+    background-color: #282828;
+    border-radius: 24px;
+}
+
+header .home-and-search .home{
+    margin-right: .5rem;
+}
+
+header .home-and-search .search{
+    display: flex;
+    align-items: center;
+}
+
+header .home-and-search .search input{
+    width: 29rem;
+    height: 100%;
+    border: none;
+}
+
+header .home-and-search .search input:focus{
+    outline: none;
+    color: white;
+}
+
+header .home-and-search .search h4{
+    z-index: 1;
+    border-left: 1px solid #4d4d4d;
+    position: relative;
+    left: -4rem;
+    padding-left: 1rem;
+    
+}
+
+header .login-signup{
+    text-align: right;
+    /* position: absolute;
+    right: 2rem; */
+}
+
+header .login-signup .signup{
+    color: #4d4d4d;
+    padding: 1rem 2rem;
+    border-radius: 24px;
+}
+
+header .login-signup .login{
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    background-color: white;
+    color: black;
+}
+
+/* side bar and main content styles */
+
+.sidebar-main{
+    display: flex;
+}
+
+.sidebar-main .sidebar{
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 32%;
+}
+
+.sidebar-main .sidebar .library-icon{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-main .sidebar .library-icon h4{
+    margin-left: 1rem;
+}
+
+.sidebar-main .sidebar .tag{
+    padding: .5rem 1rem;
+    background-color: #4d4d4d;
+    border-radius: 16px;
+    width: fit-content;
+    margin: 1rem 0;
+
+}
+
+.sidebar-main .sidebar .space{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar-main .sidebar .space div{
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-main .sidebar .space div img{
+    margin-left: .5rem;
+}
+
+.sidebar-main .sidebar .artists{
+    margin: 0rem 0;
+}
+
+.artist-card{
+    margin: 1rem 0;
+}
+
+.artist-card a {
+    display: flex;
+}
+
+.artist-card img{
+    border-radius: 2rem;
+    width: 3rem;
+    margin-right: 1rem;
+}
+
+
+.sidebar-main .main{
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-left: .5rem;
+    width: 70%;
+}
+
+
+
+
+/* play button footer */
+
+.play-area{
+    display: flex;
+}
+
+.play-area .song{
+    display: flex;
+    align-items: center;
+}
+
+.play-area .song div{
+    margin-left: .5rem;
+    padding: 1rem;
+}
+
+.play-area .play-control{
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+}
+
+.play-area .play-control div{
+    display: flex;
+    
+    width: 100%;
+}
+
+
+
+.play-area .play-control .player-controls .control-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2em;
+    margin: 0 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.play-area .play-control .seek {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.play-area .play-control .seek  .progress-bar {
+    width: 30rem;
+    background: #404040;
+    border-radius: 2px;
+    height: 5px;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.play-area .play-control .seek   .progress {
+    background: #1db954;
+    width: 1%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+.play-area .play-control .seek span{
+    padding: 0 1rem;
+}
+
+/* .play-area .play-control .time-stamps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+} */
+
+.play-area .other-things{
+    display: flex;
+    text-align: right;
+    position: absolute;
+    right: 2rem;
+}
