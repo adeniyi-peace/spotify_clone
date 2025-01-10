@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "login.css" %}">
+    <title>Login - spotify</title>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
+
+        <h1>Log in to Spotify</h1>
+
+        <br>
+
+        <form action="" method="get">
+            <div class="form-control">
+                <label for="email">Email or username</label>
+                <input type="text" name="email" placeholder="Email or username">
+            </div>
+
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="text" name="password" placeholder="Password" >
+            </div>
+
+            <button type="submit">Log In</button>
+            
+        </form>
+
+        <p>Forgot your password?</p>
+
+        <p>Don't have an account? <a href="">Sign up for Spotify</a> </p> 
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+.popular-artist h1,
+.popular-albums h1,
+.featured-charts h1{
+    font-size: 1.5rem;
+}
+
+.popular-artist .artist-content,
+.popular-albums .popular-album-content,
+.featured-charts .featured-charts-content{
+    display: flex;
+    margin: 1rem 0;
+    
+    
+}
+
+.popular-artist .artist-card,
+.popular-albums .album-card,
+.featured-charts .featured-card{
+    margin-right: 24px;
+}
+
+.popular-artist .artist-card:last-of-type,
+.popular-albums .album-card:last-of-type,
+.featured-charts .featured-card:last-of-type{
+    margin-right: 0
+}
+
+.popular-artist .artist-card img{
+    width: 10rem;
+    height: 10.5rem;
+    border-radius: 6rem;
+}
+
+.popular-albums,
+.featured-charts{
+    margin-top: 3.5rem;
+}
+
+.popular-albums .album-card img,
+.featured-charts .featured-card img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 8px;
+}

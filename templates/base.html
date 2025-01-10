@@ -19,6 +19,10 @@
             <div>
                 <div class="home">
                     <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25">
+                     <!-- <svg data-encore-id="icon" role="img" viewBox="0 0 24 24">
+                        <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z">
+                        </path>
+                    </svg> -->
                 </div>
             </div>
             <div class="search">
@@ -108,7 +112,7 @@
 
     <section class="play-area">
         <div class="song">
-            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" width="50" height="50">
+            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
             <div>
                 <h3>Artist name</h3>
                 <p>artist</p>
@@ -122,7 +126,7 @@
                 <button id="prev" class="control-btn"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
                 <button id="play-pause" class="control-btn play-btn"><i class="fa fa-play-circle" aria-hidden="true"></i></button>
                 <button id="next" class="control-btn"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
-                <button class="control-btn"><img src="{% static "repeat icon.png" %}" alt="repeat icon" width="30" height="30"></button>
+                <button class="control-btn"><img src="{% static "repeat icon.png" %}" alt="repeat icon" width="21" height="21"></button>
             </div>
             
             <div class="seek">
@@ -143,10 +147,9 @@
         </div>
 
         <div class="other-things">
-            <h6>about artist</h6>
-            <h6>mic</h6>
-            <h6>track list</h6>
-            <h6> i dont know </h6>
+            <img src="{% static "now playing icon.png" %}" alt="now playing icon" width="20" height="20">
+            <img src="{% static "lyrics icon.png" %}" alt="lyrics icon" width="20" height="20">
+            <img src="{% static "queue icon.png" %}" alt="queue icon" width="20" height="20">
         </div>
     </section>
     
