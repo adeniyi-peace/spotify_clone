@@ -1,15 +1,31 @@
 body{
-    background-color: #222222;
+    background-color: #141414;
     color: white;
 }
 
-.container{
-    width: 40%;
-    margin: 2rem auto;
+header{
     text-align: center;
-    background-color: #141414;
-    border-radius: 8px;
-    padding: 2rem 6.5rem;
+}
+
+header img{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 1.5rem;
+}
+
+.container{
+    width: 25%;
+    margin: 0rem auto;
+    text-align: center;
+}
+
+.container h1{
+    font-size: 3rem;
+}
+
+.container .stage{
+    text-align: left;
+    display: none;
 }
 
 .container .line{
@@ -22,7 +38,6 @@ body{
 }
 
 .container form{
-    width: 50%;
     text-align: left;
     margin: 0 auto;
     
@@ -43,6 +58,8 @@ body{
     font-size: medium;
     padding: 0 .5rem;
     margin-bottom: 2rem;
+    color: white;
+    border-radius:  4px;
 }
 
 .container form button{
@@ -54,4 +71,16 @@ body{
     border: none;
     border-radius: 2rem;
 
+}
+
+form .password{
+    display: none;
+}
+
+form .user-details{
+    display: none;
+}
+
+form .tandc{
+    display: none;
 }
