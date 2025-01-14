@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static "sign_up.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Sign up - spotify</title>
 </head>
 <body>
@@ -14,95 +15,108 @@
         <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
     </header>
 
-    <div class="container">
-
-        <div class="first">
-            <h1>Sign up to start listening</h1>
-        </div>
-
-        <div class="stage">
-            <p>Step 1 of 3</p>
-
-            <h3>Create a password</h3>
-        </div>
-
-        
-
-        <div class="line"></div>
-        <br>
-
-        <form action="" method="get">
-
-            <div class="form-control email">
-                <label for="email">Email address</label>
-                <input type="text" name="email" placeholder="name@domain.com">
-
-            </div>
-
-
-            <div class="form-control password">
-                
-
-                <label for="password">Password</label>
-                <input type="text" name="password" placeholder="Password" >
-                
-                <div>
-                    <h4>Your password must contain at least</h4>
-                    <p>1 letterNot</p>
-                    <p>1 number or special character (example: # ? ! &)</p>
-                    <p>10 characters</p>
-                </div>
-
-
-            </div>
-
-
-            <div class="form-control user-details">
-                <!-- <p>Step 2 of 3</p>
-
-                <h3>Tell us about yourself</h3> -->
-
-                <label for="Name">NamePassword</label>
-                <p>This name will appear on your profile</p>
-                <input type="text" name="Name">
-
-                <label for="DOB">Date of birth</label>
-                <p>Why do we need your date of birth? Learn more.</p>
-                <input type="text" name="DOB">
-
-
-            </div>
-
-            <div class="form-control tandc">
-                <!-- <p>Step 3 of 3</p>
-
-                <h3>Terms & Conditions</h3> -->
-
-                <div>
-                    <input type="checkbox" name="" id="">
-                    <label for="">I would prefer not to receive marketing messages from Spotify</label>
-                </div>
-
-                <div>
-                    <input type="checkbox" name="" id="">
-                    <label for="">Share my registration data with Spotify's content providers for marketing purposes</label>
-                </div>
-
-                <p>By clicking on sign-up, you agree to Spotify's Terms and Conditions of Use.</p>
-
-                <p>By clicking on sign-up, you agree to the Spotify Privacy Policy.</p>
-
-            </div>
-
-            <button >Sign up</button>
-            
-        </form>
-
-        <div class="line"></div>
-
-        <p>Already have an account? <a href="">Log in here.</a> </p> 
-
+    <div class="progress" id="progress">
+        <div id="progress-bar"></div>
     </div>
+
+    <section>
+
+        <div class="back">
+            
+            <button type="button" id="back-button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+
+        </div>
+
+        <div class="container">
+
+            <div class="first" id="first">
+                <h1>Sign up to start listening</h1>
+            </div>
+    
+            
+    
+            <div class="stage" id="stage_header">
+                <p>Step 1 of 3</p>
+    
+                <h3>Create a password</h3>
+            </div>
+    
+            
+            <br>
+    
+            <form action="" method="get">
+    
+                <div class="form-control email" id="email">
+                    <label for="email">Email address</label>
+                    <input type="text" name="email" placeholder="name@domain.com">
+    
+                </div>
+    
+    
+                <div class="form-control password" id="password">
+                    
+    
+                    <label for="password">Password</label>
+                    <input type="text" name="password" placeholder="Password" >
+                    
+                    <div>
+                        <h4>Your password must contain at least</h4>
+                        <p>1 letterNot</p>
+                        <p>1 number or special character (example: # ? ! &)</p>
+                        <p>10 characters</p>
+                    </div>
+    
+    
+                </div>
+    
+    
+                <div class="form-control user-details" id="user-details" >
+                    <!-- <p>Step 2 of 3</p>
+    
+                    <h3>Tell us about yourself</h3> -->
+    
+                    <label for="Name">Name</label>
+                    <p>This name will appear on your profile</p>
+                    <input type="text" name="Name">
+    
+                    <label for="DOB">Date of birth</label>
+                    <p>Why do we need your date of birth? Learn more.</p>
+                    <input type="text" name="DOB">
+    
+    
+                </div>
+    
+                <div class="form-control tandc" id="tandc">
+                    <!-- <p>Step 3 of 3</p>
+    
+                    <h3>Terms & Conditions</h3> -->
+    
+                    <div>
+                        <input type="checkbox" name="" id="">
+                        <label for="">I would prefer not to receive marketing messages from Spotify</label>
+                    </div>
+    
+                    <div>
+                        <input type="checkbox" name="" id="">
+                        <label for="">Share my registration data with Spotify's content providers for marketing purposes</label>
+                    </div>
+    
+                    <p>By clicking on sign-up, you agree to Spotify's Terms and Conditions of Use.</p>
+    
+                    <p>By clicking on sign-up, you agree to the Spotify Privacy Policy.</p>
+    
+                </div>
+    
+                <button type="button" id="button">Next</button>
+                
+            </form>
+            <br>
+            <div class="line"></div>
+    
+            <p>Already have an account? <a href="">Log in here.</a> </p> 
+    
+        </div>
+    </section>
 
     <script src="{% static "sign_up.js" %}"></script>
 </body>
