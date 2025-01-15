@@ -162,10 +162,10 @@ header .login-signup .login{
 .sidebar-main .main{
     background-color: #282828;
     border-radius: 8px;
-    padding: 1rem;
     margin-left: .5rem;
     width: 70%;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 

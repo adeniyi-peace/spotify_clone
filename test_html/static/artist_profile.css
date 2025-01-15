@@ -1,0 +1,131 @@
+
+.all .profile-image{
+    height: 25rem;
+    text-align: center;
+    top: -1rem;
+    position: sticky;
+}
+
+.all .profile-image img{
+    width: 100%;
+    
+}
+
+.all .profile{
+    position: relative;
+    top: -22rem;
+}
+
+.all .profile .artist-name{
+    padding: 1rem ;
+}
+
+.all .artist-name h1{
+    font-size: 6rem;
+}
+
+.all .artist-name .most-lisen{
+    margin-top: 1rem;
+}
+
+.all .play-following{
+    display: flex;
+    margin-top: 1rem;
+    padding: 1rem ;
+    background-color: #282828b3;
+    backdrop-filter: blur(10px);
+    align-items: center;
+}
+
+.all .play-following .play-all{
+    color: green;
+    font-size: 3rem;
+}
+
+.all .play-following .following{
+    border: 1px solid white;
+    margin: 0 2rem;
+    padding: .4rem.7rem;
+    border-radius: 12px;
+}
+
+
+.all .popular h2{
+    background-color: #282828b3;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.all .popular .popular-container{
+    background-color: #282828;
+    padding: 1rem;
+}
+
+.all .popular .popular-card{
+    display: grid;
+    grid-template-columns: 5% 50% 22.5% 22.5%;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.all .popular .popular-card .sn{
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.all .popular .popular-card .music-name{
+    display: flex;
+    align-items: center;
+    
+}
+
+.all .popular .popular-card .music-name img{
+    width: 3rem;
+    height: 3rem;
+
+}
+
+.all .popular .popular-card .times-played,
+.all .popular .popular-card .duration{
+    text-align: center;
+}
+
+
+
+.all .discograpy{
+    padding: 1rem;
+    background-color: #282828;
+}
+
+.all .discograpy .discograpy-container{
+    display: flex;
+}
+
+.all .discograpy .album-card{
+    margin-right: 24px;
+}
+
+.all .discograpy .album-card img{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 8px;
+}
+
+.all .about{
+    background-color: #282828;
+    padding: 1rem;
+}
+
+.all .about .about-container{
+    padding: .5rem;
+}
+
+.all .about img{
+    width: 100%;
+    border-radius: 12px;
+}
+
+.all .about .artist-detail{
+    position: relative;
+    top: -10rem;
+}
