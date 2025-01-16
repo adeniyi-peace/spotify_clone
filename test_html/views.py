@@ -14,3 +14,6 @@ def register(request):
 
 def artist_profile(request):
     return render(request, "artist_profile.html")
+
+def search(request):
+    return render(request, "search.html")

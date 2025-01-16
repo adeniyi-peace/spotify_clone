@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}AURORA | Spotify{% endblock title %}
+
 {% block styles %}<link rel="stylesheet" href="{% static "artist_profile.css" %}">{% endblock styles %}
 
 {% block contents %}
@@ -252,6 +254,11 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="extra">
+        <!-- this div is used to remove the extra space left 
+         from the use of  position rlative and top -22rem in the div profile -->
     </div>
 
 </section>

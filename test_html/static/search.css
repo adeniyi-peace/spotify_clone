@@ -1,0 +1,180 @@
+.type{
+    display: flex;
+    padding: 1rem;
+    margin-bottom: .75rem;
+}
+
+.type button{
+    padding: .4rem .8rem;
+    border-radius: 1rem;
+    margin-right: 1rem;
+    background-color: #ffffff;
+    color: black;
+    border: none;
+}
+
+.all{
+    padding: 1rem;
+    display: none;
+}
+
+.all .first{
+    display: flex;
+}
+
+.all .first h1{
+    font-size: 1.5rem;
+    margin-bottom: .5rem;
+}
+
+.all .first .top-result{
+    width: 50%;
+}
+
+.all .first .songs{
+    width: 50%;
+}
+
+
+.all .first .top-result .result-card{
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: #222222;
+    height: 15rem;
+}
+
+.all .top-result img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 3rem;
+}
+
+.first .top-result .result-card h3{
+    font-size: 2rem;
+    margin: .5rem 0;
+}
+
+
+.all .first .songs .container{
+    margin-left: .5rem;
+}
+
+.all .first .song-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: .6rem;
+}
+
+.all .first .song-container .song-detail{
+    display: flex;
+}
+
+.all .first .song-container img{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+}
+
+.all .first .song-container .duration{
+    text-align: center;
+}
+
+/* artists and album styles */
+
+
+.all .artist-result .artist-content,
+.all .album-result .album-container{
+    display: flex;
+    margin: 1rem 0;
+    
+    
+}
+
+.all .artist-result .artist-card,
+.all .album-result .album-card{
+    margin-right: 24px;
+}
+
+.all .artist-result .artist-card:last-of-type,
+.all .album-result .album-card:last-of-type{
+    margin-right: 0
+}
+
+.all .artist-result .artist-card img{
+    width: 10rem;
+    height: 10.5rem;
+    border-radius: 6rem;
+}
+
+.all .album-result,
+.all .artist-result{
+    margin-top: 3.5rem;
+}
+
+.all .album-result .album-card img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 8px;
+}
+
+
+
+/* artist only */
+
+.artist{
+    padding: 0 1rem;
+    display: none;
+}
+
+.artist .artist-content{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.artist .artist-content .artist-card{
+    padding: 1rem;
+}
+
+.artist .artist-content .artist-card img{
+    width: 12rem;
+    height: 12rem;
+    border-radius: 6rem;
+    box-shadow: 0 0px 8px black;
+}
+
+
+
+/* songs-alone */
+
+.songs-alone {
+    padding: 0 1rem;
+    color: #afafaf;
+}
+
+.songs-alone table{
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+.songs-alone table th{
+    border-bottom: 1px solid #404040;
+    padding: .5rem;
+}
+
+
+.songs-alone table td{
+    padding: .5rem;
+}
+
+.songs-alone table .song-detail{
+    display: flex;
+}
+
+.songs-alone table img{
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: .5rem;
+    border-radius: 3px;
+}
+

@@ -1,3 +1,6 @@
+.all{
+    
+}
 
 .all .profile-image{
     height: 25rem;
@@ -14,6 +17,7 @@
 .all .profile{
     position: relative;
     top: -22rem;
+    
 }
 
 .all .profile .artist-name{
@@ -32,7 +36,7 @@
     display: flex;
     margin-top: 1rem;
     padding: 1rem ;
-    background-color: #282828b3;
+    background-color: #141414b3;
     backdrop-filter: blur(10px);
     align-items: center;
 }
@@ -51,13 +55,13 @@
 
 
 .all .popular h2{
-    background-color: #282828b3;
+    background-color: #141414b3;
     padding: 1rem;
     backdrop-filter: blur(10px);
 }
 
 .all .popular .popular-container{
-    background-color: #282828;
+    background-color: #141414;
     padding: 1rem;
 }
 
@@ -94,7 +98,7 @@
 
 .all .discograpy{
     padding: 1rem;
-    background-color: #282828;
+    background-color: #141414;
 }
 
 .all .discograpy .discograpy-container{
@@ -112,7 +116,7 @@
 }
 
 .all .about{
-    background-color: #282828;
+    background-color: #141414;
     padding: 1rem;
 }
 
@@ -128,4 +132,11 @@
 .all .about .artist-detail{
     position: relative;
     top: -10rem;
+}
+
+.all .extra{
+    height: 0.1px;
+    background-color: #141414;
+    position: relative;
+    margin-top: -22rem;
 }
