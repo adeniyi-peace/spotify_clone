@@ -17,3 +17,6 @@ def artist_profile(request):
 
 def search(request):
     return render(request, "search.html")
+
+def album(request):
+    return render(request, "album.html")

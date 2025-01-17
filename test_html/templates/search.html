@@ -8,13 +8,13 @@
 {% block contents %}
 
 <div class="type">
-    <button type="button">All</button>
-    <button type="button">Artist</button>
-    <button type="button">Songs</button>
-    <button type="button">Album</button>
+    <button type="button" id="btn-all">All</button>
+    <button type="button" id="btn-artist-alone">Artist</button>
+    <button type="button" id="btn-songs-alone">Songs</button>
+    <button type="button" id="btn-album-alone">Album</button>
 </div>
 
-<section class="all">
+<section class="all" id="all">
     <div class="first">
         <div class="top-result">
 
@@ -283,7 +283,7 @@
     </div>
 </section>
 
-<section class="artist">
+<section class="artist" id="artist-alone">
 
     <div class="artist-content">
 
@@ -441,14 +441,14 @@
     
 </section>
 
-<section class="songs-alone">
+<section class="songs-alone" id="songs-alone">
 
     <div class="table">
 
         <table>
             <tr>
                 <th>#</th>
-                <th>Title</th>
+                <th class="title">Title</th>
                 <th>Album</th>
                 <th>Duration</th>
             </tr>
@@ -528,13 +528,28 @@
                 <td>3:38</td>
             </tr>
 
+            <tr>
+                <td>6</td>
+                <td>
+                    <div class="song-detail">
+                    <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                        <div>
+                            <p>Pidgin & English</p>
+                            <p>artist name</p>
+                        </div>
+                    </div>
+                </td>
+                <td>Sincerly,Benson</td>
+                <td>3:38</td>
+            </tr>
+
         </table>
 
     </div>
 
 </section>
 
-<section class="album-alone">
+<section class="album-alone" id="album-alone">
 
     <div class="album-container">
 
@@ -616,9 +631,86 @@
             </a>
         </div>
 
+        <div class="album-card">
+            <a href="">
+                <img src="https://i.scdn.co/image/ab67616d00001e025e9b08109120e18c41a7b3e2" alt="spotify logo" >
+                
+                <div class="card">
+                    <div class="first">
+                        <a href="">Morayo</a>
+                    </div>
+
+                    <div class="second">
+                        <a href=""><p>Wizkid</p></a>
+                    </div>
+                </div>
+        </div>
+
+        <div class="album-card">
+            <a href="">
+                <img src="https://i.scdn.co/image/ab67616d00001e027c45c1c29c18a5e0b46fc117" alt="spotify logo" >
+                
+                <div class="card">
+                    <div class="first">
+                        <a href="">Lungu Boy</a>
+                    </div>
+
+                    <div class="second">
+                        <a href=""><p>Asake</p></a>
+                    </div>
+                </div>
+        </div>
+
+        <div class="album-card" >
+            <a href="">
+                <img src="https://i.scdn.co/image/ab67616d00001e02d1f30d725a79cb694d80044a" alt="spotify logo" >
+                
+                <div class="card">
+                    <div class="first">
+                        <a href="">Homeless</a>
+                    </div>
+
+                    <div class="second">
+                        <a href=""><p>Llona</p></a>
+                    </div>
+                </div>
+        </div>
+
+        <div class="album-card">
+            <a href="">
+                <img src="https://i.scdn.co/image/ab67616d00001e02fa058974e25c095bcf528028" alt="spotify logo" >
+                
+                <div class="card">
+                    <div class="first">
+                        <a href="">Jiggy Forever</a>
+                    </div>
+
+                    <div class="second">
+                        <a href=""><p>Young Jonn</p></a>
+                    </div>
+                </div>
+        </div>
+
+        <div class="album-card">
+            <a href="">
+                <img src="https://i.scdn.co/image/ab67616d00001e0219df46a8fa3d972ff4c84275" alt="spotify logo" >
+                
+                <div class="card">
+                    <div class="first">
+                        <a href="">HEIS</a>
+                    </div>
+
+                    <div class="second">
+                        <a href=""><p>Rema</p></a>
+                    </div>
+                </div>
+            </a>
+        </div>
+
     </div>
 
 </section>
 
+<script src="{% static "search.js" %}"></script>
 
 {% endblock contents %}

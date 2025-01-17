@@ -8,14 +8,19 @@
     padding: .4rem .8rem;
     border-radius: 1rem;
     margin-right: 1rem;
-    background-color: #ffffff;
-    color: black;
+    background-color: #2e2e2e;
+    color: #ffffff;
     border: none;
+    cursor: pointer;
+}
+
+.type #btn-all{
+    background-color: #ffffff;
+    color: #2e2e2e;
 }
 
 .all{
     padding: 1rem;
-    display: none;
 }
 
 .all .first{
@@ -148,18 +153,21 @@
 
 .songs-alone {
     padding: 0 1rem;
-    color: #afafaf;
+    margin-top: -1rem;
+    display: none;
 }
 
 .songs-alone table{
     border-collapse: collapse;
     width: 100%;
-    text-align: left;
+    text-align: center;
 }
 
 .songs-alone table th{
     border-bottom: 1px solid #404040;
     padding: .5rem;
+    font-size: .8rem;
+    color: #afafaf;
 }
 
 
@@ -167,14 +175,54 @@
     padding: .5rem;
 }
 
+.songs-alone table tr:nth-of-type(2) td{
+    padding-top: 1.5rem;
+}
+
+.songs-alone table .title{
+    text-align: left;
+}
+
 .songs-alone table .song-detail{
     display: flex;
+    text-align: left;
 }
 
 .songs-alone table img{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.6rem;
+    height: 2.6rem;
     margin-right: .5rem;
     border-radius: 3px;
 }
 
+
+/* album only */
+
+.album-alone{
+    padding: 0 1rem;
+}
+
+.album-alone .album-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.album-alone .album-card{
+    padding: 1rem;
+}
+
+.album-alone .album-card img{
+    width: 12rem;
+    height: 12rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px black;
+}
+
+.album-alone .album-card .first{
+    padding: .5rem 0;
+}
+
+.album-alone .album-card .second a{
+    font-size: .9rem;
+    color: #afafaf;
+}
