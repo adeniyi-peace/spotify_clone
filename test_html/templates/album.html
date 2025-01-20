@@ -3,19 +3,21 @@
 
 {% block title %}A Different Kind Of Human - Step 2 Album By Aroura | Spotify{% endblock title %}
 
-{% block styles %}<link rel="stylesheet" href="{% static "artist_album.css" %}">{% endblock styles %}
+{% block styles %}<link rel="stylesheet" href="{% static "album.css" %}">{% endblock styles %}
 
 {% block contents %}
 
 <section class="all">
 
-    <div class="album-image">
-        <img src="https://i.scdn.co/image/ab67616d00001e02ddc43da988dc80fac12c53ac" alt="">
+    <div class="album-image" id="album-image">
+        <div class="album-img" id="album-img">
+            <img src="https://i.scdn.co/image/ab67616d00001e02ddc43da988dc80fac12c53ac" alt="">
+        </div>
 
         <div class="album-name">
             <p>Album</p>
             <h1>A Different Kind Of Human - Step 2</h1>
-            <p class="most-lisen">13,876,702 monthly listeners</p>
+            <p><strong>AURORA</strong> . 2019 . 11 Songs, 40mins 8sec</p>
         </div>
 
     </div>
@@ -23,9 +25,9 @@
     <div class="album-details">
         
     
-        <div class="play-add">
+        <div class="play-plus">
             <a href="" class="play-all"><i class="fa fa-play-circle" aria-hidden="true"></i></a>
-            <a href="" class="following"> plus</a>
+            <a href="" class="plus"> plus</a>
             <p>more</p>
         </div>
     
@@ -40,7 +42,7 @@
                 
                 <tr>
                     <td>1</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -53,7 +55,7 @@
     
                 <tr>
                     <td>2</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -66,7 +68,7 @@
     
                 <tr>
                     <td>3</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -79,7 +81,7 @@
     
                 <tr>
                     <td>4</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -92,7 +94,7 @@
     
                 <tr>
                     <td>5</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -105,7 +107,7 @@
     
                 <tr>
                     <td>6</td>
-                    <td>
+                    <td class="title">
                         <div class="song-detail">
                             <div>
                                 <h4>Pidgin & English</h4>
@@ -128,3 +130,7 @@
 </section>
 
 {% endblock contents %}
+
+{% block javascripts %}
+<script src="{% static "album.js" %}"></script>
+{% endblock javascripts %}

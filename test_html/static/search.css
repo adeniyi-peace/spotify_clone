@@ -200,6 +200,7 @@
 
 .album-alone{
     padding: 0 1rem;
+    display: none;
 }
 
 .album-alone .album-container{
