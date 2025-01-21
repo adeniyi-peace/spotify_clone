@@ -1,7 +1,6 @@
 .all .album-image{
     width: 100%;
     height: 25rem;
-    background-color: #009c15;
     display: flex;
     padding: 1.5rem;
     align-items: last baseline;
@@ -36,6 +35,16 @@
 .all .album-image .album-name strong{
     color: white;
 }
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Initial overlay color */
+    transition: background-color 0.3s ease;
+  }
 
 
 /* album-details styles */
