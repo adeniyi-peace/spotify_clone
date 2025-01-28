@@ -1,3 +1,9 @@
+.popular-artist,
+.popular-albums,
+.featured-charts{
+    padding: 1rem;
+}
+
 .popular-artist h1,
 .popular-albums h1,
 .featured-charts h1{

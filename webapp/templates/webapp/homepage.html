@@ -9,14 +9,14 @@
     <h1>Popular artists</h1>
 
     <div class="artist-content">
-
+        {% for artist in pop_artists %}
         <div class="artist-card">
             <a href="">
-                <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
+                <img src="{{artist.artist_image_url}}" alt="{{artist.artist_name}}" >
                 
                 <div class="card">
                     <div class="first">
-                        <a href="">Davido</a>
+                        <a href="">{{artist.artist_name}}</a>
                     </div>
 
                     <div class="second">
@@ -24,66 +24,8 @@
                     </div>
                 </div>
         </div>
-    
-        <div class="artist-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab676161000051740203df702d0792712e78cf2e" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Asake</a>
-                    </div>
-
-                    <div class="second">
-                        <p>artist</p>
-                    </div>
-                </div>
-        </div>
-    
-        <div class="artist-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab67616100005174fa2e36a9d14dc11f3233bb4a" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Wizkid</a>
-                    </div>
-
-                    <div class="second">
-                        <p>artist</p>
-                    </div>
-                </div>
-        </div>
-    
-        <div class="artist-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab6761610000517420df1a160b50a1b02c43c134" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Fido</a>
-                    </div>
-
-                    <div class="second">
-                        <p>artist</p>
-                    </div>
-                </div>
-        </div>
-
-        <div class="artist-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab676161000051742d405f4858ce3cd52d409c98" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Burna Boy</a>
-                    </div>
-
-                    <div class="second">
-                        <p>artist</p>
-                    </div>
-                </div>
-        </div>
+        {% endfor %}
+        
 
     </div>
     
@@ -96,82 +38,24 @@
     </h1>
 
     <div class="popular-album-content">
-
+        {% for album in pop_albums %}
         <div class="album-card">
             <a href="">
-                <img src="https://i.scdn.co/image/ab67616d00001e025e9b08109120e18c41a7b3e2" alt="spotify logo" >
+                <img src="{{album.album_image_url}}" alt="{{album.album_name}}" >
                 
                 <div class="card">
                     <div class="first">
-                        <a href="">Morayo</a>
+                        <a href="">{{album.album_name}}</a>
                     </div>
 
                     <div class="second">
-                        <a href=""><p>Wizkid</p></a>
+                        <a href=""><p>{{album.album_artist}}</p></a>
                     </div>
                 </div>
         </div>
+        {% endfor %}
 
-        <div class="album-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab67616d00001e027c45c1c29c18a5e0b46fc117" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Lungu Boy</a>
-                    </div>
-
-                    <div class="second">
-                        <a href=""><p>Asake</p></a>
-                    </div>
-                </div>
-        </div>
-
-        <div class="album-card" >
-            <a href="">
-                <img src="https://i.scdn.co/image/ab67616d00001e02d1f30d725a79cb694d80044a" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Homeless</a>
-                    </div>
-
-                    <div class="second">
-                        <a href=""><p>Llona</p></a>
-                    </div>
-                </div>
-        </div>
-
-        <div class="album-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab67616d00001e02fa058974e25c095bcf528028" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">Jiggy Forever</a>
-                    </div>
-
-                    <div class="second">
-                        <a href=""><p>Young Jonn</p></a>
-                    </div>
-                </div>
-        </div>
-
-        <div class="album-card">
-            <a href="">
-                <img src="https://i.scdn.co/image/ab67616d00001e0219df46a8fa3d972ff4c84275" alt="spotify logo" >
-                
-                <div class="card">
-                    <div class="first">
-                        <a href="">HEIS</a>
-                    </div>
-
-                    <div class="second">
-                        <a href=""><p>Rema</p></a>
-                    </div>
-                </div>
-            </a>
-        </div>
+        
 
     </div>
 
