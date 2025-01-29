@@ -19,8 +19,11 @@
         <div id="progress-bar"></div>
     </div>
 
-    <section>
+    <div>
+        {{form.errors}}
+    </div>
 
+    <section>
         <div class="back">
             
             <button type="button" id="back-button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
@@ -44,20 +47,19 @@
             
             <br>
     
-            <form action="" method="get">
+            <form action="" method="post">
+                {% csrf_token %}
     
                 <div class="form-control email" id="email">
-                    <label for="email">Email address</label>
-                    <input type="text" name="email" placeholder="name@domain.com">
-    
+                    {{form.email.label_tag}}
+                    {{form.email}}
                 </div>
     
     
                 <div class="form-control password" id="password">
                     
-    
-                    <label for="password">Password</label>
-                    <input type="text" name="password" placeholder="Password" >
+                    {{form.password1.label_tag}}
+                    {{form.password1}}
                     
                     <div>
                         <h4>Your password must contain at least</h4>
@@ -77,11 +79,18 @@
     
                     <label for="Name">Name</label>
                     <p>This name will appear on your profile</p>
-                    <input type="text" name="Name">
+                    <div class="flname">
+                        <div>
+                            {{form.first_name.label_tag}}{{form.first_name}}
+                        </div>
+                        <div>
+                            {{form.last_name.label_tag}}{{form.last_name}}
+                        </div>
+                    </div>
     
-                    <label for="DOB">Date of birth</label>
+                    {{form.DOB.label_tag}}
                     <p>Why do we need your date of birth? Learn more.</p>
-                    <input type="text" name="DOB">
+                    {{form.DOB}}
     
     
                 </div>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}AURORA | Spotify{% endblock title %}
+{% block title %}{{artist_details.name}} | Spotify{% endblock title %}
 
 {% block styles %}<link rel="stylesheet" href="{% static "webapp/css/artist_profile.css" %}">{% endblock styles %}
 
@@ -10,14 +10,14 @@
 <section class="all">
 
     <div class="profile-image">
-        <img src="https://i.scdn.co/image/ab67618600001016a01c6b13771a29015718c06b" alt="">
+        <img src="{{artist_details.header_image_url}}" alt="{{artist_details.name}}">
     </div>
 
     <div class="profile">
         <div class="artist-name">
             <p>Verified Artist</p>
-            <h1>AURORA</h1>
-            <p class="most-lisen">13,876,702 monthly listeners</p>
+            <h1>{{artist_details.name}}</h1>
+            <p class="most-lisen">{{artist_details.monthly_listeners}} monthly listeners</p>
         </div>
     
         <div class="play-following">
@@ -31,7 +31,7 @@
             <h2>Popular</h2>
     
             <div class="popular-container">
-    
+                {% for tracks in artist_details.tracks %}
                 <div class="popular-card">
                     
                     <div class="sn">
@@ -39,103 +39,20 @@
                     </div>
     
                     <div class="music-name">
-                        <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                        <p>Runaway</p>
+                        <img src="{{tracks.track_image_url}}" alt="{{tracks.name}}" >
+                        <p>{{tracks.name}}</p>
                     </div>
     
                     <div class="times-played">
-                        <p>991721872</p>
+                        <p>{{tracks.track_play_count}}</p>
                     </div>
     
                     <div class="duration">
-                        <p>4:08</p>
+                        <p>{{tracks.track_duration}}</p>
                     </div>
     
                 </div>
-    
-                <div class="popular-card">
-                    
-                    <div class="sn">
-                        <p>2</p>
-                    </div>
-    
-                    <div class="music-name">
-                        <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                        <p>Runaway</p>
-                    </div>
-    
-                    <div class="times-played">
-                        <p>991721872</p>
-                    </div>
-    
-                    <div class="duration">
-                        <p>4:08</p>
-                    </div>
-    
-                </div>
-    
-                <div class="popular-card">
-                    
-                    <div class="sn">
-                        <p>3</p>
-                    </div>
-    
-                    <div class="music-name">
-                        <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                        <p>Runaway</p>
-                    </div>
-    
-                    <div class="times-played">
-                        <p>991721872</p>
-                    </div>
-    
-                    <div class="duration">
-                        <p>4:08</p>
-                    </div>
-    
-                </div>
-    
-                <div class="popular-card">
-                    
-                    <div class="sn">
-                        <p>4</p>
-                    </div>
-    
-                    <div class="music-name">
-                        <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                        <p>Runaway</p>
-                    </div>
-    
-                    <div class="times-played">
-                        <p>991721872</p>
-                    </div>
-    
-                    <div class="duration">
-                        <p>4:08</p>
-                    </div>
-    
-                </div>
-    
-                <div class="popular-card">
-                    
-                    <div class="sn">
-                        <p>5</p>
-                    </div>
-    
-                    <div class="music-name">
-                        <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                        <p>Runaway</p>
-                    </div>
-    
-                    <div class="times-played">
-                        <p>991721872</p>
-                    </div>
-    
-                    <div class="duration">
-                        <p>4:08</p>
-                    </div>
-    
-                </div>
+                {% endfor %}
     
             </div>
         </div>
@@ -145,16 +62,17 @@
             <h2>Discograpy</h2>
     
             <div class="discograpy-container">
-    
+
+                {% for album in artist_details.albums %}
                 <div class="album-card">
                     <div class="image">
     
-                        <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
+                        <img src="{{album.album_cover}}" alt="{{album.album_name}}" >
     
                     </div>
     
                     <div class="album-name">
-                        <p>Infections Of A Different kind - Step 1</p>
+                        <p>{{album.album_name}}</p>
                     </div>
     
                     <div class="year">
@@ -162,74 +80,8 @@
                     </div>
     
                 </div>
+                {% endfor %}
     
-                <div class="album-card">
-                    <div class="image">
-    
-                        <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
-    
-                    </div>
-    
-                    <div class="album-name">
-                        <p>Infections Of A Different kind - Step 1</p>
-                    </div>
-    
-                    <div class="year">
-                        <p>2018.single</p>
-                    </div>
-    
-                </div>
-    
-                <div class="album-card">
-                    <div class="image">
-    
-                        <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
-    
-                    </div>
-    
-                    <div class="album-name">
-                        <p>Infections Of A Different kind - Step 1</p>
-                    </div>
-    
-                    <div class="year">
-                        <p>2018.single</p>
-                    </div>
-    
-                </div>
-    
-                <div class="album-card">
-                    <div class="image">
-    
-                        <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
-    
-                    </div>
-    
-                    <div class="album-name">
-                        <p>Infections Of A Different kind - Step 1</p>
-                    </div>
-    
-                    <div class="year">
-                        <p>2018.single</p>
-                    </div>
-    
-                </div>
-    
-                <div class="album-card">
-                    <div class="image">
-    
-                        <img src="https://i.scdn.co/image/ab67616100005174057fdb13352beee124b79051" alt="spotify logo" >
-    
-                    </div>
-    
-                    <div class="album-name">
-                        <p>Infections Of A Different kind - Step 1</p>
-                    </div>
-    
-                    <div class="year">
-                        <p>2018.single</p>
-                    </div>
-    
-                </div>
     
             </div>
         </div>
@@ -238,17 +90,12 @@
             <h2>About</h2>
 
             <div class="about-container">
-                <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                <img src="{{artist_details.gallery_image_url}}" alt="{{artist_details.name}}" >
                 <div class="artist-detail">
         
                     <h5>13,876,702 Monthly Listeners</h5>
         
-                    <p>“Though its precise function and anatomy were not clearly understood, 
-                        the heart was believed to be the centre of the soul. Of intuition. 
-                        Of emotion and intention. Until we decided these were qualifications of the mind. 
-                        Emotion overpowered by logic. And with the world being so corrupted by money, power and 
-                        selfishness you cannot help but ask yourself - What Happened To The Heart?” 🫀 07.06.24
-                    </p>
+                    {{artist_details.biography}}
         
                 </div>
             </div>

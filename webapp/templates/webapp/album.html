@@ -11,13 +11,13 @@
 
     <div class="album-image" id="album-image">
         <div class="album-img" id="album-img">
-            <img src="https://i.scdn.co/image/ab67616d00001e02ddc43da988dc80fac12c53ac" alt="" crossorigin="anonymous">
+            <img src="{{album_details.album_cover}}" alt="{{album_details.name}}" crossorigin="anonymous">
         </div>
 
         <div class="album-name">
             <p>Album</p>
-            <h1>A Different Kind Of Human - Step 2</h1>
-            <p><strong>AURORA</strong> . 2019 . 11 Songs, 40mins 8sec</p>
+            <h1>{{album_details.name}}</h1>
+            <p><strong>{{album_details.artist}}</strong> . {{album_details.release_date}} . {{album_details.total_tracks}} Songs, 40mins 8sec</p>
         </div>
 
     </div>
@@ -39,84 +39,21 @@
                     <th class="title">Title</th>
                     <th>Duration</th>
                 </tr>
+                {% for track in album_details.track_list  %}
+                <tr>
+                    <td>{{track.track_number}}</td>
+                    <td class="title">
+                        <div class="song-detail">
+                            <div>
+                                <h4>{{track.track_name}}</h4>
+                                <p>{{track.track_artist}}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{track.track_duration}}</td>
+                </tr>
+                {% endfor %}
                 
-                <tr>
-                    <td>1</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
-    
-                <tr>
-                    <td>2</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
-    
-                <tr>
-                    <td>3</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
-    
-                <tr>
-                    <td>4</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
-    
-                <tr>
-                    <td>5</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
-    
-                <tr>
-                    <td>6</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>Pidgin & English</h4>
-                                <p>artist name</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>3:38</td>
-                </tr>
     
             </table>
 

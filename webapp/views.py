@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 
 # import modules that will enable background task and scheduling
@@ -6,8 +7,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events
 from django.utils import timezone
 
-from .spotify_hompage_webscraper import spotify_webscrapper
+from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details
 from .models import ScrappedData
+from .forms import CreateUserForm
 
 # Create your views here.
 
@@ -63,16 +65,40 @@ class Index(View):
 def login(request):
     return render(request, "webapp/login.html")
 
-def register(request):
-    return render(request, "webapp/register.html")
+class SignUp(View):
+    def get(self, request):
+        form = CreateUserForm()
 
-def artist_profile(request):
-    return render(request, "webapp/artist_profile.html")
+        context = {"form":form}
+
+        return render(request, "webapp/sign_up.html", context)
+    
+    def post(self, request):
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("index"))
+        
+        context = {"form":form}
+
+        return render(request, "webapp/sign_up.html", context)
+        
+
+
+class ArstistProfile(View):
+    def get(self, request):
+        artist_details = get_artist_details("6eUKZXaKkcviH0Ku9w2n3V")
+        context = {"artist_details":artist_details}
+        return render(request, "webapp/artist_profile.html", context)
 
 def search(request):
     return render(request, "webapp/search.html")
 
-def album(request):
-    return render(request, "webapp/album.html")
+class AlbumView(View):
+    def get(self, request):
+        album_details = get_album_details("3dLXfyaG1kYeSQknLs2LP1")
+        context = {"album_details":album_details}
+        return render(request, "webapp/album.html", context)
 
 
