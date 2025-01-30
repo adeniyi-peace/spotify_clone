@@ -160,3 +160,77 @@ def get_album_details(album_id):
     
     else:
         print("Error getting album data")
+
+
+def get_search(query):
+
+    url = "https://spotify23.p.rapidapi.com/search/"
+
+    querystring = {"q":"query","type":"multi","offset":"0","limit":"10","numberOfTopResults":"7"}
+
+    headers = {
+        "x-rapidapi-key": "cefcd605efmshfe83982a384c1cap10e73ajsnbf39a673f5df",
+        "x-rapidapi-host": "spotify23.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+
+    if response.status_code == 200:
+        response_data = response.json()
+        albums = []
+        artists = []
+        tracks = []
+        top_result = {}
+
+        for album in response_data["albums"].get("items"):
+            id = album["data"].get("uri").split(":")[-1]
+            name = album["data"].get("name")
+            release_date = album["data"]["date"].get("year")
+            cover = album["data"]["coverArt"]["sources"][0].get("url")
+            artist_id = album["data"]["artists"]["items"][0].get("uri").split(":")[-1]
+            artist = album["data"]["artists"]["items"][0]["profile"].get("name")
+
+            albums.append({"id":id, "name":name, "release_date":release_date, "cover":cover,
+                           "artist_id":artist_id, "artist":artist})
+            
+        for artist in response_data["artists"].get("items"):
+            id = artist["data"].get("uri").split(":")[-1]
+            name = artist["data"]["profile"].get("name")
+            image_url = artist["data"]["visuals"]["avatarImage"]["sources"][0].get("url")
+
+            artists.append({"id":id, "name":name, "image_url":image_url})
+
+        for track in response_data["tracks"].get("items"):
+            id = track["data"].get("id")
+            name = track["data"].get("name")
+            album = track["data"]["albumOfTrack"].get("name")
+            album_id = track["data"]["albumOfTrack"].get("id")
+            album_cover = track["data"]["albumOfTrack"]["coverArt"]["sources"][0].get("url")
+            artist_id = track["data"]["artists"]["items"][0].get("uri").split(":")[-1]
+            artist = track["data"]["artists"]["items"][0]["profile"].get("name")
+            duration = track["data"]["duration"].get("totalMilliseconds")
+
+            tracks.append({"id":id, "name":name, "album":album, "album_id":album_id, "album_cover":album_cover,
+                           "artist_id":artist_id, "artist":artist, "duration":duration})
+
+        for top in response_data["topResults"].get("items"):
+            if "album" in top["data"].get("uri") and query in top["data"].get("name"):
+                top_result['type'] = "album"
+                top_result['id'] = top["data"].get("uri").split(":")[-1]
+                top_result['name'] = top["data"].get("name")
+                top_result['release_date'] = top["data"]["date"].get("year")
+                top_result['image_url'] = top["data"]["coverArt"]["sources"][0].get("url")
+                top_result['artist_id'] = top["data"]["artists"]["items"][0].get("uri").split(":")[-1]
+                top_result['artist'] = top["data"]["artists"]["items"][0]["profile"].get("name")
+                break
+
+            elif "artist" in top["data"].get("uri") and query.lower() in top["data"]["profile"].get("name").lower():
+                print("here")
+                top_result['type'] = "artist"
+                top_result['id'] = top["data"].get("uri").split(":")[-1]
+                top_result['name'] = top["data"]["profile"].get("name")
+                top_result['image_url'] = top["data"]["visuals"]["avatarImage"]["sources"][0].get("url")
+                break
+                
+    
+        return {"albums":albums, "artists":artists, "tracks":tracks, "top_result":top_result}

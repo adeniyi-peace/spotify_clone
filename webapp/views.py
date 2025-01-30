@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
+import json
+
 # import modules that will enable background task and scheduling
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events
 from django.utils import timezone
 
-from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details
+from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details,get_search
 from .models import ScrappedData
 from .forms import CreateUserForm
 
@@ -92,8 +94,11 @@ class ArstistProfile(View):
         context = {"artist_details":artist_details}
         return render(request, "webapp/artist_profile.html", context)
 
-def search(request):
-    return render(request, "webapp/search.html")
+class SearchView(View):
+    def get(self, request):
+        data = get_search("bnxn")
+        print(data)
+        return render(request, "webapp/search.html")
 
 class AlbumView(View):
     def get(self, request):
