@@ -54,6 +54,10 @@
     border-radius: 3rem;
 }
 
+.all .top-result .albumtype{
+    border-radius: 4px;
+}
+
 .first .top-result .result-card h3{
     font-size: 2rem;
     margin: .5rem 0;
@@ -78,10 +82,11 @@
     width: 2.5rem;
     height: 2.5rem;
     margin-right: .5rem;
+    border-radius: 4px;
 }
 
 .all .first .song-container .duration{
-    text-align: center;
+    text-align: right;
 }
 
 /* artists and album styles */

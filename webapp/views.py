@@ -96,9 +96,17 @@ class ArstistProfile(View):
 
 class SearchView(View):
     def get(self, request):
-        data = get_search("bnxn")
-        print(data)
-        return render(request, "webapp/search.html")
+        data = get_search("aurora")
+        albums = data.get("albums")
+        tracks = data.get("tracks")
+        artists = data.get("artists")
+        top_result = data.get("top_result")
+        top_tracks = tracks[:4]
+        top_albums =albums[:5]
+        top_artists = artists[:5]
+        context = {"albums":albums, "artists":artists, "tracks":tracks, "top_result":top_result,
+                   "top_tracks":top_tracks, "top_albums":top_albums, "top_artists":top_artists}
+        return render(request, "webapp/search.html", context)
 
 class AlbumView(View):
     def get(self, request):
