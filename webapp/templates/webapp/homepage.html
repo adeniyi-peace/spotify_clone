@@ -11,12 +11,12 @@
     <div class="artist-content">
         {% for artist in pop_artists %}
         <div class="artist-card">
-            <a href="">
+            <a href="{% url "artist_profile" artist.artist_id %}">
                 <img src="{{artist.artist_image_url}}" alt="{{artist.artist_name}}" >
                 
                 <div class="card">
                     <div class="first">
-                        <a href="">{{artist.artist_name}}</a>
+                        <a href="{% url "artist_profile" artist.artist_id %}">{{artist.artist_name}}</a>
                     </div>
 
                     <div class="second">
@@ -45,11 +45,11 @@
                 
                 <div class="card">
                     <div class="first">
-                        <a href="">{{album.album_name}}</a>
+                        <a href="{% url "album" album.album_id %}">{{album.album_name}}</a>
                     </div>
 
                     <div class="second">
-                        <a href=""><p>{{album.album_artist}}</p></a>
+                        <a href="{% url "artist_profile" album.album_artist_id %}"><p>{{album.album_artist}}</p></a>
                     </div>
                 </div>
         </div>

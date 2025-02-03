@@ -89,14 +89,19 @@ class SignUp(View):
 
 
 class ArstistProfile(View):
-    def get(self, request):
-        artist_details = get_artist_details("6eUKZXaKkcviH0Ku9w2n3V")
+    def get(self, request, id):
+        artist_details = get_artist_details(id)
         context = {"artist_details":artist_details}
         return render(request, "webapp/artist_profile.html", context)
 
 class SearchView(View):
     def get(self, request):
-        data = get_search("aurora")
+        return render(request, "webapp/search.html")
+    
+    
+    def post(self, request):
+        query = request.POST.get("query")
+        data = get_search(query)
         albums = data.get("albums")
         tracks = data.get("tracks")
         artists = data.get("artists")
@@ -109,8 +114,8 @@ class SearchView(View):
         return render(request, "webapp/search.html", context)
 
 class AlbumView(View):
-    def get(self, request):
-        album_details = get_album_details("3dLXfyaG1kYeSQknLs2LP1")
+    def get(self, request, id):
+        album_details = get_album_details(id)
         context = {"album_details":album_details}
         return render(request, "webapp/album.html", context)
 

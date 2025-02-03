@@ -58,13 +58,13 @@ def spotify_webscrapper():
 
 
 def get_artist_details(artist_id):
-    url = "https://spotify-scraper.p.rapidapi.com/v1/artist/overview"
+    url = "https://spotify23.p.rapidapi.com/artist_overview/"
 
-    querystring = {"artistId":artist_id}
+    querystring = {"id":artist_id}
 
     headers = {
         "x-rapidapi-key": "cefcd605efmshfe83982a384c1cap10e73ajsnbf39a673f5df",
-        "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+        "x-rapidapi-host": "spotify23.p.rapidapi.com"
     }
 
     response = requests.get(url, headers=headers, params=querystring)
@@ -73,29 +73,34 @@ def get_artist_details(artist_id):
     if response.status_code == 200:
         response_data = response.json()
 
-        name = response_data.get("name")
-        biography = response_data.get("biography")
-        monthly_listeners = response_data["stats"].get("monthlyListeners")
-        header_image_url = response_data["visuals"]["header"][0].get("url")
-        gallery_image_url = response_data["visuals"]["gallery"][1][0].get("url")
+        name = response_data["data"]["artist"]["profile"].get("name")
+        biography = response_data["data"]["artist"]["profile"]["biography"].get("text")
+        monthly_listeners = response_data["data"]["artist"]["stats"].get("monthlyListeners")
+        if  response_data["data"]["artist"]["visuals"]["headerImage"]:
+             header_image_url = response_data["data"]["artist"]["visuals"]["headerImage"]["sources"][0].get("url")
+        else:
+             header_image_url = None
+        gallery_image_url = response_data["data"]["artist"]["visuals"]["gallery"]["items"][0]["sources"][0].get("url")
         albums = []
         tracks = []
 
-        discography = response_data.get("discography")
+        discography = response_data["data"]["artist"].get("discography")
         
-        for items in discography.get("popularReleasesAlbums"):
-            album_name = items.get("name")
-            album_id = items.get("id")
-            album_cover = items["cover"][1].get("url")
+        for items in discography["albums"].get("items"):
+            album_name = items["releases"]["items"][0].get("name")
+            album_id = items["releases"]["items"][0].get("id")
+            album_cover = items["releases"]["items"][0]["coverArt"]["sources"][0].get("url")
+            release_year = items["releases"]["items"][0]["date"].get("year")
 
-            albums.append({"album_name":album_name, "album_id":album_id, "album_cover":album_cover})
+            albums.append({"album_name":album_name, "album_id":album_id, "album_cover":album_cover,
+                           "release_year":release_year})
 
-        for items in discography.get("topTracks"):
-            track_name = items.get("name")
-            track_id = items.get("id")
-            track_duration = items.get("durationText")
-            track_play_count = items.get("playCount")
-            track_image_url = items["album"]["cover"][1].get("url")
+        for items in discography["topTracks"].get("items"):
+            track_name = items["track"].get("name")
+            track_id = items["track"].get("id")
+            track_duration = items["track"]["duration"].get("totalMilliseconds")
+            track_play_count = items["track"].get("playcount")
+            track_image_url = items["track"]["album"]["coverArt"]["sources"][1].get("url")
 
             tracks.append({"track_name":track_name, "track_id":track_id, "track_duration":track_duration,
                            "track_play_count":track_play_count, "track_image_url":track_image_url})
@@ -105,7 +110,7 @@ def get_artist_details(artist_id):
                 "albums":albums, "tracks":tracks}
     
     else:
-        print("Error get artist data")
+        print("Error getting artist data")
 
 
 def get_album_details(album_id):

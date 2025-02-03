@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}A Different Kind Of Human - Step 2 Album By Aroura | Spotify{% endblock title %}
+{% block title %}{{album_details.name}} Album By {{album_details.artist}} | Spotify{% endblock title %}
 
 {% block styles %}<link rel="stylesheet" href="{% static "webapp/css/album.css" %}">{% endblock styles %}
 
@@ -17,7 +17,7 @@
         <div class="album-name">
             <p>Album</p>
             <h1>{{album_details.name}}</h1>
-            <p><strong>{{album_details.artist}}</strong> . {{album_details.release_date}} . {{album_details.total_tracks}} Songs, 40mins 8sec</p>
+            <p><a href="{% url "artist_profile" album_details.artist_id %}"><strong>{{album_details.artist}}</strong></a> . {{album_details.release_date}} . {{album_details.total_tracks}} Songs, 40mins 8sec</p>
         </div>
 
     </div>

@@ -13,20 +13,27 @@
 <body>
     <header>
         <div class="logo">
-            <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
+            <a href="{% url "index" %}">
+                <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
+            </a>
         </div>
         <div class="home-and-search">
             <div>
                 <div class="home">
-                    <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25">
-                     <!-- <svg data-encore-id="icon" role="img" viewBox="0 0 24 24">
-                        <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z">
-                        </path>
-                    </svg> -->
+                    <a href="{% url "index" %}">
+                        <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25">
+                        <!-- <svg data-encore-id="icon" role="img" viewBox="0 0 24 24">
+                            <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z">
+                            </path>
+                        </svg> -->
+                    </a>
                 </div>
             </div>
             <div class="search">
-                <input type="text" placeholder="What do you want to play?">
+                <form action="{% url "search" %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="What do you want to play?" name="query">
+                </form>
                 <h4><img src="{% static "browse icon.png" %}" alt="browse icon" width="30" height="30"></h4>
             </div>
         </div>

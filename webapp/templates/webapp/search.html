@@ -22,17 +22,22 @@
             
             <div class="result-card">
                 
-                <div class="image">
-                    <img src="{{top_result.image_url}}" alt="{{top_result.name}}" {% if top_result.type == "Album" %}class="albumtype"{% endif %}>
-                </div>
+                <a {% if  top_result.type == "Album" %} href="{% url "album" top_result.id %}" 
+                    {% elif top_result.type == "Artist" %} href="{% url "artist_profile" top_result.id %}"
+                    {% endif %}
+                    >
+                    <div class="image">
+                        <img src="{{top_result.image_url}}" alt="{{top_result.name}}" {% if top_result.type == "Album" %}class="albumtype"{% endif %}>
+                    </div>
 
-                <div class="title">
-                    <h3>{{top_result.name}}</h3>
-                </div>
+                    <div class="title">
+                        <h3>{{top_result.name}}</h3>
+                    </div>
 
-                <div class="type-of-result">
-                    <p>{{top_result.type}}.{{top_result.artist}}</p>
-                </div>
+                    <div class="type-of-result">
+                        <p>{{top_result.type}}.<a href="{% url "artist_profile" top_result.id %}">{{top_result.artist}}</a></p>
+                    </div>
+                </a>
 
             </div>
 
@@ -76,7 +81,7 @@
 
             {% for artist in top_artists  %}
             <div class="artist-card">
-                <a href="">
+                <a href="{% url "artist_profile" artist.id %}">
                     <img src="{{artist.image_url}}" alt="{{artist.name}}" >
                     
                     <div class="card">
@@ -104,7 +109,7 @@
 
             {% for album in top_albums %}
             <div class="album-card">
-                <a href="">
+                <a href="{% url "album" album.id %}">
                     <img src="{{album.cover}}" alt="{{album.name}}" >
                     
                     <div class="card">
@@ -113,7 +118,7 @@
                         </div>
     
                         <div class="second">
-                            <a href=""><p>{{album.release_date}}.{{album.artist}}</p></a>
+                            <p>{{album.release_date}}.<a href="{% url "artist_profile" album.id %}">{{album.artist}}</a></p>
                         </div>
                     </div>
             </div>
@@ -129,7 +134,7 @@
 
         {% for artist in artists  %}
         <div class="artist-card">
-            <a href="">
+            <a href=""{% url "artist_profile" artist.id %}"">
                 <img src="{{artist.image_url}}" alt="{{artist.name}}" >
                 
                 <div class="card">
@@ -193,16 +198,16 @@
             
         {% for album in albums %}
         <div class="album-card">
-            <a href="">
+            <a href="{% url "album" album.id %}">
                 <img src="{{album.cover}}" alt="{{album.name}}" >
                 
                 <div class="card">
                     <div class="first">
-                        <a href="">{{album.name}}</a>
+                        <a href="{% url "album" album.id %}">{{album.name}}</a>
                     </div>
 
                     <div class="second">
-                        <a href=""><p>{{album.release_date}}.{{album.artist}}</p></a>
+                        <p>{{album.release_date}}.<a href="{% url "artist_profile" album.id %}">{{album.artist}}</a></p>
                     </div>
                 </div>
         </div>

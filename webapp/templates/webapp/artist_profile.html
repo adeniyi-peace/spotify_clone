@@ -10,7 +10,7 @@
 <section class="all">
 
     <div class="profile-image">
-        <img src="{{artist_details.header_image_url}}" alt="{{artist_details.name}}">
+        <img src="{{artist_details.header_image_url}}" alt="">
     </div>
 
     <div class="profile">
@@ -39,8 +39,8 @@
                     </div>
     
                     <div class="music-name">
-                        <img src="{{tracks.track_image_url}}" alt="{{tracks.name}}" >
-                        <p>{{tracks.name}}</p>
+                        <img src="{{tracks.track_image_url}}" alt="{{tracks.track_name}}" >
+                        <p>{{tracks.track_name}}</p>
                     </div>
     
                     <div class="times-played">
@@ -72,11 +72,11 @@
                     </div>
     
                     <div class="album-name">
-                        <p>{{album.album_name}}</p>
+                        <p><a href="{% url "album" album.album_id %}">{{album.album_name}}</a></p>
                     </div>
     
                     <div class="year">
-                        <p>2018.single</p>
+                        <p>{{album.release_year}}.single</p>
                     </div>
     
                 </div>
