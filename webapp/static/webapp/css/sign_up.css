@@ -114,38 +114,43 @@ section .back button{
 
 }
 
-form .password{
+.container form .error input{
+    border: 2px solid #d63838;
+    background-color: #ff7272;
+}
+
+.container form .password{
     display: none;
 }
 
-form .user-details{
+.container form .user-details{
     display: none;
 }
 
-form .user-details .flname{
+.container form .user-details .flname{
     display: flex;
 }
-form .user-details .flname div{
+.container form .user-details .flname div{
     margin-right: 2rem;
 }
 
-form .tandc{
+.container form .tandc{
     display: none;
 }
 
-form .tandc div{
+.container form .tandc div{
     background-color: #313131;
     display: flex;
     margin-bottom: 1rem;
     border-radius: 4px;
 }
 
-form .tandc div input[type="checkbox"],
-form .tandc div label{
+.container form .tandc div input[type="checkbox"],
+.container form .tandc div label{
     margin: 1rem;
 }
 
-form .tandc div input[type="checkbox"]{
+.container form .tandc div input[type="checkbox"]{
     width: 1rem;
     height: 1rem;
     accent-color: #0ba53f;

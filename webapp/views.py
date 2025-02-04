@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.contrib.auth import authenticate, login, logout
 
 import json
 
@@ -11,7 +12,7 @@ from django.utils import timezone
 
 from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details,get_search
 from .models import ScrappedData
-from .forms import CreateUserForm
+from .forms import CreateUserForm, LoginUserForm
 
 # Create your views here.
 
@@ -64,8 +65,30 @@ class Index(View):
     
 
 
-def login(request):
-    return render(request, "webapp/login.html")
+class LoginView(View):
+    def get(self, request):
+        form = LoginUserForm()
+        context = {"form":form}
+        return render(request, "webapp/login.html", context)
+    
+    def post(self, request):
+        form = LoginUserForm(request, request.POST)
+        print("here1")
+
+        if form.is_valid():
+            print("here")
+            email = request.POST.get("email")
+            password = request.POST.get("password")
+
+            user = authenticate(request, email=email, password=password)
+            print(user)
+
+            if user :
+                login(request, user)
+                return redirect(reverse("index"))
+
+        context = {"form":form}
+        return render(request, "webapp/login.html", context)
 
 class SignUp(View):
     def get(self, request):

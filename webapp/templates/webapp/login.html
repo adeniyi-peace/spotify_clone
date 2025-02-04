@@ -12,20 +12,39 @@
     <div class="container">
         <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
 
+        {% if form.errors %}
+        <div style="margin: 1rem auto; background-color: #cc3636; text-align: center; width: 40%; padding: 1rem;">
+            {% for field in form %}
+                {% for error in field.errors %}
+                <div>
+                    {{error}}
+                </div>
+                {% endfor %}
+            {% endfor %}
+
+            {% for errors in form.non_field_errors %}
+                {{errors}}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        
+
         <h1>Log in to Spotify</h1>
 
         <div class="line"></div>
         <br>
 
-        <form action="" method="get">
+        <form action="" method="post">
+            {% csrf_token %}
             <div class="form-control">
-                <label for="email">Email or username</label>
-                <input type="text" name="email" placeholder="Email or username">
+                {{form.email.label_tag}}
+                {{form.email}}
             </div>
 
             <div class="form-control">
-                <label for="password">Password</label>
-                <input type="text" name="password" placeholder="Password" >
+                {{form.password.label_tag}}
+                {{form.password}}
             </div>
 
             <button type="submit">Log In</button>

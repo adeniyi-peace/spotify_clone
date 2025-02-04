@@ -15,12 +15,18 @@
         <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
     </header>
 
-    <div class="progress" id="progress">
-        <div id="progress-bar"></div>
+    <div style="margin: 1rem auto; background-color: #cc3636; text-align: center; width: 20%; padding: 1rem;">
+        {% for field in form %}
+            {% for error in field.errors %}
+            <div>
+                {{error}}
+            </div>
+            {% endfor %}
+        {% endfor %}
     </div>
 
-    <div>
-        {{form.errors}}
+    <div class="progress" id="progress">
+        <div id="progress-bar"></div>
     </div>
 
     <section>
@@ -50,16 +56,16 @@
             <form action="" method="post">
                 {% csrf_token %}
     
-                <div class="form-control email" id="email">
+                <div class="form-control email {% if form.email.errors %}error{% endif %}" id="email">
                     {{form.email.label_tag}}
                     {{form.email}}
                 </div>
     
     
-                <div class="form-control password" id="password">
+                <div class="form-control password {% if form.password.errors %}error{% endif %}" id="password">
                     
-                    {{form.password1.label_tag}}
-                    {{form.password1}}
+                    {{form.password.label_tag}}
+                    {{form.password}}
                     
                     <div>
                         <h4>Your password must contain at least</h4>
@@ -72,21 +78,14 @@
                 </div>
     
     
-                <div class="form-control user-details" id="user-details" >
+                <div class="form-control user-details {% if form.name.errors %}error{% endif %}" id="user-details" >
                     <!-- <p>Step 2 of 3</p>
     
                     <h3>Tell us about yourself</h3> -->
     
-                    <label for="Name">Name</label>
+                    {{form.name.label_tag}}
                     <p>This name will appear on your profile</p>
-                    <div class="flname">
-                        <div>
-                            {{form.first_name.label_tag}}{{form.first_name}}
-                        </div>
-                        <div>
-                            {{form.last_name.label_tag}}{{form.last_name}}
-                        </div>
-                    </div>
+                    {{form.name}}
     
                     {{form.DOB.label_tag}}
                     <p>Why do we need your date of birth? Learn more.</p>
