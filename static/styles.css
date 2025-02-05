@@ -57,7 +57,7 @@ header .home-and-search .search{
 
 header .home-and-search .search input{
     width: 29rem;
-    height: 100%;
+    height: 2.5rem;
     border: none;
 }
 
@@ -73,6 +73,65 @@ header .home-and-search .search h4{
     left: -4rem;
     padding-left: 1rem;
     
+}
+
+header .logged-in{
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+header .logged-in a{
+    padding: .5rem 1rem;
+}
+
+header .logged-in .explore{
+    background-color: white;
+    color: black;
+    border-radius: 16px;
+}
+
+header .logged-in .user{
+    background-color: rgb(177, 248, 202, 0.4);
+    padding: .3rem ;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+header .logged-in .user p{
+    padding: .4rem 0.6rem;
+    border-radius: 0.8rem;
+    background-color: #54c47a;
+    color: black;
+}
+
+
+header .logged-in .user .dropdown{
+    position: absolute;
+    z-index: 1;
+    background-color: #282828;
+    padding: 0.2rem;
+    width: 15%;
+    text-align: left;
+    border-radius: 4px;
+    margin-top: 1rem;
+    right: 1rem;
+    list-style: none;
+    display: none;
+    
+}
+
+header .logged-in .user .dropdown li{
+    padding: 0.5rem 1rem;
+}
+
+
+header .logged-in .user .dropdown li:hover{
+    background-color: #404040;
+}
+
+header .logged-in .user:hover .dropdown{
+    display: block;
 }
 
 header .login-signup{
@@ -158,6 +217,58 @@ header .login-signup .login{
     margin-right: 1rem;
 }
 
+.sidebar-main .sidebar .not-loggedin-sidebar{
+    margin-top: 3rem;
+    height: 10rem;
+    overflow-y: scroll;
+}
+
+.sidebar-main .sidebar .not-loggedin-sidebar div{
+    padding: 1rem;
+    width: 95%;
+    background-color: #282828;
+    border-radius: 12px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.sidebar-main .sidebar .not-loggedin-sidebar div p{
+    padding: 1rem 0;
+}
+
+.sidebar-main .sidebar .not-loggedin-sidebar div a{
+    padding: 0.5rem;
+    border-radius: 24px;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+}
+
+.sidebar-main .sidebar .others-not-logged-in{
+    margin-top: 2rem;
+    font-size: 0.7rem;
+    color: #acabab;
+}
+
+.sidebar-main .sidebar .others-not-logged-in span{
+    display: flex;
+    margin: 1rem 0;
+
+}
+
+.sidebar-main .sidebar .others-not-logged-in span p{
+    margin: 0 0.5rem;
+}
+
+.sidebar-main .sidebar .others-not-logged-in button{
+    margin-top: 3rem;
+    border: 1px solid #acabab;
+    background: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+}
+
 
 .sidebar-main .main{
     background-color: #141414;
@@ -178,7 +289,7 @@ header .login-signup .login{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 .5rem;
+    /* padding: 0 .5rem; */
 }
 
 .play-area .song{
@@ -273,4 +384,23 @@ header .login-signup .login{
 
 .play-area .other-things img{
     margin-right: 1rem;
+}
+
+.play-area .not-logged-in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: .8rem ;
+    background-color: purple;
+}
+
+.play-area .not-logged-in .sign-up{
+    padding: 1rem 2rem;
+    border-radius: 24px;
+    background-color: white;
+}
+
+.play-area .not-logged-in .sign-up a{
+    color: black;
 }

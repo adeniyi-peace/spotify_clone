@@ -15,6 +15,7 @@
         <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
     </header>
 
+    {% if form.errors %}
     <div style="margin: 1rem auto; background-color: #cc3636; text-align: center; width: 20%; padding: 1rem;">
         {% for field in form %}
             {% for error in field.errors %}
@@ -24,6 +25,7 @@
             {% endfor %}
         {% endfor %}
     </div>
+    {% endif %}
 
     <div class="progress" id="progress">
         <div id="progress-bar"></div>

@@ -38,10 +38,33 @@
             </div>
         </div>
 
-        <div class="login-signup">
-            <a href="" class="signup"><strong>Sign up</strong></a>
-            <a href="" class="login"><strong>Log in</strong></a>
+        {% if user.is_authenticated %}
+        <div class="logged-in">
+            <a href="#" class="explore"><strong>Explore Premuim</strong></a>
+            <a href="#" class="app">Install App</a>
+            <a href="#" class="not">notification</a>
+            <div class="user">
+                <p>
+                    <Strong>A</Strong>
+                </p>
+                <ul class="dropdown">
+                    <li>Accounts</li>
+                    <li>Profile</li>
+                    <li>Upgrade to Premium</li>
+                    <li>Setting</li>
+                    <hr>
+                    <li><a href="{% url "logout" %}">Log out</a></li>
+                </ul>
+            </div>
         </div>
+
+        {% else %}
+
+        <div class="login-signup">
+            <a href="{% url "sign_up" %}" class="signup"><strong>Sign up</strong></a>
+            <a href="{% url "login" %}" class="login"><strong>Log in</strong></a>
+        </div>
+        {% endif %}
     </header>
 
 
@@ -53,6 +76,8 @@
                     <img src="{% static "library icon.png" %}" alt="library icon" width="30" height="30">
                     <h4>Your Library</h4>
                 </div>
+
+                {% if user.is_authenticated %}
                 <h5 class="tag">Artists</h5>
 
                 <div class="space">
@@ -109,6 +134,39 @@
                         </a>
                     </div>
                 </div>
+
+                {% else %}
+                <div class="not-loggedin-sidebar">
+                    <div>
+                        <h4>Create your first playlist</h4>
+                        <p>It's easy and we will help you</p>
+                        <a >Create playlist</a>
+                    </div>
+
+                    <div>
+                        <h4>Let's find some podcast to follow</h4>
+                        <p>We'll keep you updated on new episodes</p>
+                        <a >Browse podcasts</a>
+                    </div>
+                </div>
+
+                <div class="others-not-logged-in">
+                    <span>
+                        <p>Legal</p>
+                        <p>Safety and privacy center</p>
+                        <p>Privacy Policy</p>
+                        <p>Cookies</p>
+                    </span>
+
+                    <span>
+                        <p>About Ads</p>
+                        <p>Accessibility</p>
+                    </span>
+
+                    <button><strong>English</strong></button>
+                </div>
+
+                {% endif %}
             </div>
         </section>
     
@@ -118,6 +176,8 @@
     </section>
 
     <section class="play-area">
+
+        {% if user.is_authenticated %}
         <div class="song">
             <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
             <div>
@@ -158,6 +218,20 @@
             <img src="{% static "lyrics icon.png" %}" alt="lyrics icon" width="20" height="20">
             <img src="{% static "queue icon.png" %}" alt="queue icon" width="20" height="20">
         </div>
+
+        {% else %}
+        <div class="not-logged-in">
+            <div class="words">
+                <p>Preview of Spotify</p>
+                <h4>Sign up to get unlimited songs and podcast with occasional ads. No credit card needed</h4>
+            </div>
+
+            <div class="sign-up">
+                <a href="{% url "sign_up" %}"><strong>Sign up free</strong></a>
+            </div>
+        </div>
+
+        {% endif %}
     </section>
     
     {% block javascripts %}{% endblock javascripts %}

@@ -73,10 +73,8 @@ class LoginView(View):
     
     def post(self, request):
         form = LoginUserForm(request, request.POST)
-        print("here1")
 
         if form.is_valid():
-            print("here")
             email = request.POST.get("email")
             password = request.POST.get("password")
 
@@ -102,7 +100,8 @@ class SignUp(View):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            user=form.save()
+            login(request, user)
             return redirect(reverse("index"))
         
         context = {"form":form}
@@ -141,5 +140,11 @@ class AlbumView(View):
         album_details = get_album_details(id)
         context = {"album_details":album_details}
         return render(request, "webapp/album.html", context)
+    
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect(reverse("index"))
 
 
