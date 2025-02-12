@@ -28,3 +28,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class ScrappedData(models.Model):
     artists = models.JSONField(default=list)
     albums = models.JSONField(default=list)
+
+class FollowedArtist(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="follow")
+    id = models.CharField( max_length=100, unique=True, primary_key=True, db_index=True)
+    name = models.CharField( max_length=100)
+    image_url = models.URLField( max_length=200)
+
+    def __str__(self):
+        return self.name
+    

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import yt_dlp
 
 
 
@@ -74,12 +75,20 @@ def get_artist_details(artist_id):
         response_data = response.json()
 
         name = response_data["data"]["artist"]["profile"].get("name")
+        id = response_data["data"]["artist"].get("id")
         biography = response_data["data"]["artist"]["profile"]["biography"].get("text")
         monthly_listeners = response_data["data"]["artist"]["stats"].get("monthlyListeners")
+
         if  response_data["data"]["artist"]["visuals"]["headerImage"]:
              header_image_url = response_data["data"]["artist"]["visuals"]["headerImage"]["sources"][0].get("url")
         else:
              header_image_url = None
+
+        if  response_data["data"]["artist"]["visuals"]["avatarImage"]:
+             avatar_image_url = response_data["data"]["artist"]["visuals"]["avatarImage"]["sources"][1].get("url")
+        else:
+             header_image_url = None
+
         gallery_image_url = response_data["data"]["artist"]["visuals"]["gallery"]["items"][0]["sources"][0].get("url")
         albums = []
         tracks = []
@@ -105,9 +114,9 @@ def get_artist_details(artist_id):
             tracks.append({"track_name":track_name, "track_id":track_id, "track_duration":track_duration,
                            "track_play_count":track_play_count, "track_image_url":track_image_url})
             
-        return {"name":name, "biography":biography, "monthly_listeners":monthly_listeners,
+        return {"id":id, "name":name, "biography":biography, "monthly_listeners":monthly_listeners,
                 "header_image_url":header_image_url, "gallery_image_url":gallery_image_url,
-                "albums":albums, "tracks":tracks}
+                "albums":albums, "tracks":tracks, "avatar_image_url":avatar_image_url}
     
     else:
         print("Error getting artist data")
@@ -260,3 +269,80 @@ def get_search(query):
                 
     
         return {"albums":albums, "artists":artists, "tracks":tracks, "top_result":top_result}
+
+
+def get_track_audio_url(query):
+    url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
+
+    querystring = {"track":"Photograph Ed Sheeran","quality":"sq"}
+
+    headers = {
+        "x-rapidapi-key": "cefcd605efmshfe83982a384c1cap10e73ajsnbf39a673f5df",
+        "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+
+    if response_data.status_code == 200:
+        response_data = response.json()
+        audio_url = response_data["soundcloudTrack"]["audio"][0].get("url")
+        return audio_url
+
+
+
+def search_song(id):
+
+    url = "https://spotify23.p.rapidapi.com/tracks/"
+
+    querystring = {"ids":id}
+
+    headers = {
+        "x-rapidapi-key": "cefcd605efmshfe83982a384c1cap10e73ajsnbf39a673f5df",
+        "x-rapidapi-host": "spotify23.p.rapidapi.com"
+    }
+
+    response = requests.get(url, headers=headers, params=querystring)
+
+    if response.status_code == 200:
+        response_data = response.json()["tracks"][0]
+        cover_image = response_data["album"]["images"][0].get("url")
+        name = response_data.get("name")
+        duration = response_data.get("duration_ms")
+        artists = []
+        artist_name_only = ""
+
+        for artist in response_data["artists"]:
+            artist_name = artist.get("name")
+            id = artist.get("id")
+            artists.append({"id":id, "artist_name":artist_name})
+            artist_name_only  += artist_name+" "
+            
+
+        # Set up yt-dlp options to search for the song
+        ydl_opts = {
+            'format': 'bestaudio/best',  # Best audio quality
+            'quiet': True,  # Suppress output except for essential
+            'extractaudio': True,  # Only extract audio
+            'noplaylist': True,  # Don't download playlists
+            'simulate': True,  # Don't download, just simulate and get metadata
+            'force_generic_extractor': True,  # Use the generic extractor
+        }
+
+        # Construct the search query
+        query = f"{name} {artist_name_only}"
+
+        # Use yt-dlp to search and get the video information
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch:{query}", download=False)
+            
+            if 'entries' in info:
+                # Grab the first video result
+                video = info['entries'][0]
+                video_url = video['url']  # This is the video URL
+                return {"name":name, "cover_image":cover_image, 
+                        "artists":artists, "duration":duration, "audio_url":video_url}
+            return None
+    else:
+        print("Error getting album data")
+
+

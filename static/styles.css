@@ -201,6 +201,8 @@ header .login-signup .login{
 
 .sidebar-main .sidebar .artists{
     margin: 0rem 0;
+    overflow-y: scroll;
+    height: 19rem;
 }
 
 .sidebar-main .sidebar .artists .artist-card{

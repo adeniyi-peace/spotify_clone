@@ -1,4 +1,6 @@
 {% load static %}
+{% load custom_tags %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +10,7 @@
     <title>{% block title %}Document{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "styles.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{% static 'favicon.ico' %}"> 
     {% block styles %}{% endblock styles %}
 </head>
 <body>
@@ -90,16 +93,20 @@
                 </div>
     
                 <div class="artists">
+                    {% if user.follow.all %}
+                    {% for artist in user.follow.all  %}
                     <div class="artist-card">
-                        <a href="">
-                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+                        <a href="{% url "artist_profile" artist.id %}">
+                            <img src="{{artist.image_url}}" alt="{{artist.name}}" >
                             
                             <div class="artist-name">
-                                <h3>Artist name</h3>
+                                <h3>{{artist.name}}</h3>
                                 <p>artist</p>
                             </div>
                         </a>
                     </div>
+                    {% endfor %}
+                    {% endif %}
         
                     <div class="artist-card">
                         <a href="">
@@ -179,10 +186,14 @@
 
         {% if user.is_authenticated %}
         <div class="song">
-            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
+            <img src="{{song.cover_image}}" alt="{{song.name}}" >
             <div>
-                <h3>Artist name</h3>
-                <p>artist</p>
+                <h3>{{song.name}}</h3>
+                <p>
+                    {% for artist in song.artists %}
+                    <a href="{% url "artist_profile" artist.id %}">{{artist.artist_name}}</a>
+                    {% endfor %}
+                </p>
             </div>
         </div>
 
@@ -205,12 +216,12 @@
                 </div>
         
                 
-                <span id="total-duration">4:00</span>
+                <span id="total-duration">{{song.duration|miliseconds_to_minutes}}</span>
                 
             </div>
         
     
-            <audio id="audio-player" src="audio-source-url"></audio>
+            <audio id="audio-player" src="{{song.audio_url}}"></audio>
         </div>
 
         <div class="other-things">
@@ -235,6 +246,7 @@
     </section>
     
     {% block javascripts %}{% endblock javascripts %}
+    <script src="{% static "js/base.js" %}"></script>
     
 </body>
 </html>

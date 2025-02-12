@@ -10,9 +10,10 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events
 from django.utils import timezone
 
-from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details,get_search
-from .models import ScrappedData
+from .spotify_webscraper import spotify_webscrapper, get_artist_details, get_album_details, get_search, search_song
+from .models import ScrappedData, FollowedArtist
 from .forms import CreateUserForm, LoginUserForm
+from .music_context_processor import SongSession
 
 # Create your views here.
 
@@ -75,7 +76,7 @@ class LoginView(View):
         form = LoginUserForm(request, request.POST)
 
         if form.is_valid():
-            email = request.POST.get("email")
+            email = request.POST.get("username")
             password = request.POST.get("password")
 
             user = authenticate(request, email=email, password=password)
@@ -113,12 +114,35 @@ class SignUp(View):
 class ArstistProfile(View):
     def get(self, request, id):
         artist_details = get_artist_details(id)
-        context = {"artist_details":artist_details}
+        followed = FollowedArtist.objects.filter(id=id)
+        context = {"artist_details":artist_details, "followed":followed}
         return render(request, "webapp/artist_profile.html", context)
+
+    
+
+class AddRemoveFollowed(View):
+    def post(self, request):
+        id = request.POST.get("id")
+        followed = FollowedArtist.objects.filter(id=id)
+        previous_page =request.META.get("HTTP_REFERER")
+
+        if followed :
+            followed.delete()
+
+        else:
+            id = request.POST.get("id")
+            artist = request.POST.get("artist")
+            image_url = request.POST.get("image_url")
+            FollowedArtist.objects.create(user=request.user, id=id, name=artist, image_url =image_url)
+
+        return redirect(previous_page)
 
 class SearchView(View):
     def get(self, request):
-        return render(request, "webapp/search.html")
+        context =request.session.get("search_result", {})
+        # if "search_result" in request.session:
+        #     del request.session["search_result"]
+        return render(request, "webapp/search.html", context)
     
     
     def post(self, request):
@@ -133,6 +157,7 @@ class SearchView(View):
         top_artists = artists[:5]
         context = {"albums":albums, "artists":artists, "tracks":tracks, "top_result":top_result,
                    "top_tracks":top_tracks, "top_albums":top_albums, "top_artists":top_artists}
+        request.session["search_result"] = context
         return render(request, "webapp/search.html", context)
 
 class AlbumView(View):
@@ -140,6 +165,19 @@ class AlbumView(View):
         album_details = get_album_details(id)
         context = {"album_details":album_details}
         return render(request, "webapp/album.html", context)
+    
+
+class PlaySongView(View):
+    def get(self, request, id):
+        previous_page =request.META.get("HTTP_REFERER")
+
+        song = SongSession(request)
+
+        song_details = search_song(id)
+
+        song.save_song(**song_details)
+
+        return redirect(previous_page)
     
 
 class LogoutView(View):

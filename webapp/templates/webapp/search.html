@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}Spotify - Search{% endblock title %}
 
@@ -51,17 +52,19 @@
                 {% for tracks in top_tracks  %}
                 <div class="song-container">
 
-                    <div class="song-detail">
-                        <img src="{{tracks.album_cover}}" alt="{{tracks.name}}" >
-                        <div>
-                            <p>{{tracks.name}}</p>
-                            <p>{{tracks.artist}}</p>
+                    <a href="{% url "song" tracks.id %}">
+                        <div class="song-detail">
+                            <img src="{{tracks.album_cover}}" alt="{{tracks.name}}" >
+                            <div>
+                                <p>{{tracks.name}}</p>
+                                <p>{{tracks.artist}}</p>
+                            </div>
                         </div>
-                    </div>
-    
-                    <div class="duration">
-                        <p>{{tracks.duration}}</p>
-                    </div>
+        
+                        <div class="duration">
+                            <p>{{tracks.duration|miliseconds_to_minutes}}</p>
+                        </div>
+                    </a>
     
                 </div>
                 {% endfor %}
@@ -86,7 +89,7 @@
                     
                     <div class="card">
                         <div class="first">
-                            <a href="">{{artist.name}}</a>
+                            <a href="{% url "artist_profile" artist.id %}">{{artist.name}}</a>
                         </div>
     
                         <div class="second">
@@ -114,7 +117,7 @@
                     
                     <div class="card">
                         <div class="first">
-                            <a href="">{{album.name}}</a>
+                            <a href="{% url "album" album.id %}">{{album.name}}</a>
                         </div>
     
                         <div class="second">
@@ -169,18 +172,22 @@
             
             {% for track in tracks  %}
             <tr>
-                <td>1</td>
-                <td>
-                    <div class="song-detail">
-                    <img src="{{track.album_cover}}" alt="{{track.name}}" >
-                        <div>
-                            <p>{{track.name}}</p>
-                            <p>{{track.artist}}</p>
-                        </div>
-                    </div>
-                </td>
-                <td>{{track.album}}</td>
-                <td>{{track.duration}}</td>
+                
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        <a href="{% url "song" track.id %}">
+                            <div class="song-detail">
+                            <img src="{{track.album_cover}}" alt="{{track.name}}" >
+                                <div>
+                                    <p>{{track.name}}</p>
+                                    <p>{{track.artist}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td>{{track.album}}</td>
+                    <td>{{track.duration|miliseconds_to_minutes}}</td>
+                
             </tr>
             {% endfor %}
 

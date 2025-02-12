@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
+{% load humanize %}
 
 {% block title %}{{artist_details.name}} | Spotify{% endblock title %}
 
@@ -17,12 +19,26 @@
         <div class="artist-name">
             <p>Verified Artist</p>
             <h1>{{artist_details.name}}</h1>
-            <p class="most-lisen">{{artist_details.monthly_listeners}} monthly listeners</p>
+            <p class="most-lisen">{{artist_details.monthly_listeners|intcomma }} monthly listeners</p>
         </div>
     
         <div class="play-following">
             <a href="" class="play-all"><i class="fa fa-play-circle" aria-hidden="true"></i></a>
-            <a href="" class="following"> Following</a>
+            
+                <form action="{% url "addremove" %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{artist_details.id}}">
+                    <input type="hidden" name="artist" value="{{artist_details.name}}">
+                    <input type="hidden" name="image_url" value="{{artist_details.avatar_image_url}}">
+                    {% if followed  %}
+                    <button type="submit" class="following">Following</button>
+                    {% else %}
+                    <button type="submit" class="following">Follow</button>
+                    {% endif %}
+                </form>
+                 
+            
+            
             <p>more</p>
         </div>
     
@@ -32,26 +48,29 @@
     
             <div class="popular-container">
                 {% for tracks in artist_details.tracks %}
-                <div class="popular-card">
+                <a href="{% url "song" tracks.track_id %}">
+                    <div class="popular-card">
                     
-                    <div class="sn">
-                        <p>1</p>
-                    </div>
+                        <div class="sn">
+                            <p>{{forloop.counter}}</p>
+                        </div>
+        
+                        <div class="music-name">
+                            <img src="{{tracks.track_image_url}}" alt="{{tracks.track_name}}" >
+                            <p>{{tracks.track_name}}</p>
+                        </div>
+        
+                        <div class="times-played">
+                            <p>{{tracks.track_play_count|intcomma }}</p>
+                        </div>
+        
+                        <div class="duration">
+                            <p>{{tracks.track_duration|miliseconds_to_minutes}}</p>
+                        </div>
+                    
     
-                    <div class="music-name">
-                        <img src="{{tracks.track_image_url}}" alt="{{tracks.track_name}}" >
-                        <p>{{tracks.track_name}}</p>
                     </div>
-    
-                    <div class="times-played">
-                        <p>{{tracks.track_play_count}}</p>
-                    </div>
-    
-                    <div class="duration">
-                        <p>{{tracks.track_duration}}</p>
-                    </div>
-    
-                </div>
+                </a>
                 {% endfor %}
     
             </div>

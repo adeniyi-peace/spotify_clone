@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}{{album_details.name}} Album By {{album_details.artist}} | Spotify{% endblock title %}
 
@@ -41,17 +42,22 @@
                 </tr>
                 {% for track in album_details.track_list  %}
                 <tr>
-                    <td>{{track.track_number}}</td>
-                    <td class="title">
-                        <div class="song-detail">
-                            <div>
-                                <h4>{{track.track_name}}</h4>
-                                <p>{{track.track_artist}}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td>{{track.track_duration}}</td>
+                    
+                        <td>{{track.track_number}}</td>
+                        <td class="title">
+                            <a href="{% url "song" track.track_id %}">
+                                <div class="song-detail">
+                                    <div>
+                                        <h4>{{track.track_name}}</h4>
+                                        <p>{{track.track_artist}}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </td>
+                        <td>{{track.track_duration|miliseconds_to_minutes}}</td>
+                    
                 </tr>
+                
                 {% endfor %}
                 
     
