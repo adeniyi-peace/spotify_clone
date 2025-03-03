@@ -48,7 +48,7 @@
             <a href="#" class="not">notification</a>
             <div class="user">
                 <p>
-                    <Strong>A</Strong>
+                    <Strong>{{request.user.name|slice:":1"|upper}}</Strong>
                 </p>
                 <ul class="dropdown">
                     <li>Accounts</li>
@@ -80,7 +80,7 @@
                     <h4>Your Library</h4>
                 </div>
 
-                {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
                 <h5 class="tag">Artists</h5>
 
                 <div class="space">
@@ -91,9 +91,9 @@
                         <img src="{% static "recent icon.png" %}" alt="recent icon" width="30" height="30">
                     </div>
                 </div>
-    
+                
+                {% if user.follow.all %}
                 <div class="artists">
-                    {% if user.follow.all %}
                     {% for artist in user.follow.all  %}
                     <div class="artist-card">
                         <a href="{% url "artist_profile" artist.id %}">
@@ -106,43 +106,16 @@
                         </a>
                     </div>
                     {% endfor %}
-                    {% endif %}
-        
-                    <div class="artist-card">
-                        <a href="">
-                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                            
-                            <div class="artist-name">
-                                <h3>Artist name</h3>
-                                <p>artist</p>
-                            </div>
-                        </a>
-                    </div>
-        
-                    <div class="artist-card">
-                        <a href="">
-                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                            
-                            <div class="artist-name">
-                                <h3>Artist name</h3>
-                                <p>artist</p>
-                            </div>
-                        </a>
-                    </div>
-        
-                    <div class="artist-card">
-                        <a href="">
-                            <img src="https://geo-media.beatsource.com/image_size/500x500/5/9/7/5974a942-7721-44db-982d-88b641bb4c94.jpg" alt="spotify logo" >
-                            
-                            <div class="artist-name">
-                                <h3>Artist name</h3>
-                                <p>artist</p>
-                            </div>
-                        </a>
-                    </div>
                 </div>
 
                 {% else %}
+                <div class="no-artist">
+                    <p>You do not have any followed artist</p>
+                </div>
+
+                {% endif %}
+
+            {% else %}
                 <div class="not-loggedin-sidebar">
                     <div>
                         <h4>Create your first playlist</h4>

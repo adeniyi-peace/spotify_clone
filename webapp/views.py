@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 import json
 
@@ -52,6 +53,9 @@ class Index(View):
                 next_run_time=timezone.now(), 
                 max_instances=1
             )
+        
+        if not ScrappedData.objects.all().first():
+            scheduled_task()
 
         scrapper = ScrappedData.objects.all()[0]
 
@@ -88,6 +92,7 @@ class LoginView(View):
 
         context = {"form":form}
         return render(request, "webapp/login.html", context)
+    
 
 class SignUp(View):
     def get(self, request):
@@ -114,13 +119,17 @@ class SignUp(View):
 class ArstistProfile(View):
     def get(self, request, id):
         artist_details = get_artist_details(id)
+
+        if artist_details is None:
+            return render(request, "webapp/error.html")
+        
         followed = FollowedArtist.objects.filter(id=id)
         context = {"artist_details":artist_details, "followed":followed}
         return render(request, "webapp/artist_profile.html", context)
 
     
 
-class AddRemoveFollowed(View):
+class AddRemoveFollowed(LoginRequiredMixin, View):
     def post(self, request):
         id = request.POST.get("id")
         followed = FollowedArtist.objects.filter(id=id)
@@ -140,6 +149,10 @@ class AddRemoveFollowed(View):
 class SearchView(View):
     def get(self, request):
         context =request.session.get("search_result", {})
+
+        if context is None:
+            return render(request, "webapp/error.html")
+        
         # if "search_result" in request.session:
         #     del request.session["search_result"]
         return render(request, "webapp/search.html", context)
@@ -148,6 +161,10 @@ class SearchView(View):
     def post(self, request):
         query = request.POST.get("query")
         data = get_search(query)
+
+        if data is None:
+            return render(request, "webapp/error.html")
+        
         albums = data.get("albums")
         tracks = data.get("tracks")
         artists = data.get("artists")
@@ -163,11 +180,15 @@ class SearchView(View):
 class AlbumView(View):
     def get(self, request, id):
         album_details = get_album_details(id)
+
+        if album_details is None:
+            return render(request, "webapp/error.html")
+        
         context = {"album_details":album_details}
         return render(request, "webapp/album.html", context)
     
 
-class PlaySongView(View):
+class PlaySongView(LoginRequiredMixin, View):
     def get(self, request, id):
         previous_page =request.META.get("HTTP_REFERER")
 
