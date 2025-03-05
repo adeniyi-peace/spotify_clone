@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static "styles.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="{% static 'favicon.ico' %}"> 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     {% block styles %}{% endblock styles %}
 </head>
 <body>
@@ -92,28 +93,36 @@
                     </div>
                 </div>
                 
-                {% if user.follow.all %}
-                <div class="artists">
-                    {% for artist in user.follow.all  %}
-                    <div class="artist-card">
-                        <a href="{% url "artist_profile" artist.id %}">
-                            <img src="{{artist.image_url}}" alt="{{artist.name}}" >
-                            
-                            <div class="artist-name">
-                                <h3>{{artist.name}}</h3>
-                                <p>artist</p>
-                            </div>
-                        </a>
+                <div class="second-scroll">
+                        {% if user.follow.all %}
+
+                    <div class="artists scrollable-content2" id="sidebarartist">
+                        {% for artist in user.follow.all  %}
+                        <div class="artist-card">
+                            <a href="{% url "artist_profile" artist.id %}">
+                                <img src="{{artist.image_url}}" alt="{{artist.name}}" >
+                                
+                                <div class="artist-name">
+                                    <h3>{{artist.name}}</h3>
+                                    <p>Artist</p>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                </div>
 
-                {% else %}
-                <div class="no-artist">
-                    <p>You do not have any followed artist</p>
-                </div>
+                    <div class="custom-scrollbar2">
+                        <div class="scroll-thumb2"></div>
+                    </div>
 
-                {% endif %}
+                    {% else %}
+                    <div class="no-artist">
+                        <p>You do not have any followed artist</p>
+                    </div>
+
+                    {% endif %}
+                </div>
+                
 
             {% else %}
                 <div class="not-loggedin-sidebar">
@@ -151,18 +160,26 @@
         </section>
     
         <section class="main">
-            {% block contents %}{% endblock contents %}
+
+            <div class="scrollable-content">
+                {% block contents %}{% endblock contents %}
+            </div>
+
+            <div class="custom-scrollbar">
+                <div class="scroll-thumb"></div>
+              </div>
+            
         </section>
     </section>
 
     <section class="play-area">
 
         {% if user.is_authenticated %}
-        <div class="song">
-            <img src="{{song.cover_image}}" alt="{{song.name}}" >
+        <div class="song" >
+            <img id="playsong-image" src="{{song.cover_image}}" alt="{{song.name}}" >
             <div>
-                <h3>{{song.name}}</h3>
-                <p>
+                <h3 id="playsongname">{{song.name}}</h3>
+                <p id="playsongartist">
                     {% for artist in song.artists %}
                     <a href="{% url "artist_profile" artist.id %}">{{artist.artist_name}}</a>
                     {% endfor %}
@@ -220,6 +237,8 @@
     
     {% block javascripts %}{% endblock javascripts %}
     <script src="{% static "js/base.js" %}"></script>
+    <script src="{% static "js/scroll.js" %}"></script>
+    <script src="{% static "js/scroll2.js" %}"></script>
     
 </body>
 </html>

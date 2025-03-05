@@ -1,5 +1,5 @@
 .all{
-    
+    padding: 0 1rem;
 }
 
 .all .profile-image{
@@ -59,7 +59,6 @@
 
 .all .popular h2{
     background-color: #141414b3;
-    padding: 1rem;
     backdrop-filter: blur(10px);
 }
 
@@ -68,11 +67,19 @@
     padding: 1rem;
 }
 
+.all .popular .popular-container .popular-card:hover{
+    background-color: #7c7c7c33;
+}
+
+.all .popular .popular-container .popular-card:active{
+    background-color: #42424233;
+}
+
 .all .popular .popular-card{
     display: grid;
     grid-template-columns: 5% 50% 22.5% 22.5%;
     align-items: center;
-    margin: 1rem 0;
+    padding: 0.5rem;
 }
 
 .all .popular .popular-card .sn{
@@ -87,8 +94,10 @@
 }
 
 .all .popular .popular-card .music-name img{
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
 
 }
 
@@ -110,6 +119,26 @@
 
 .all .discograpy .album-card{
     margin-right: 24px;
+    padding: 1rem;
+    max-width: 13rem;
+}
+
+
+.all .discograpy .album-card:hover{
+    background-color: #7c7c7c33;
+}
+
+.all .discograpy .album-card .album-name{
+    margin: 0.5rem 0;
+}
+
+.all .discograpy .album-card .year{
+    font-size: .9rem;
+    color: #afafaf;
+}
+
+.all .discograpy .album-card .album-name a:hover{
+    text-decoration: underline;
 }
 
 .all .discograpy .album-card img{

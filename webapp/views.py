@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
@@ -137,12 +138,30 @@ class AddRemoveFollowed(LoginRequiredMixin, View):
 
         if followed :
             followed.delete()
+            update = FollowedArtist.objects.filter(user= request.user)
+            objects = []
+            for things in update:
+                objects.append({
+                    "id":things.id,
+                    "artist": things.name,
+                    "image_url": things.image_url
+                })
+            return JsonResponse({"follow":"follow", "object":objects})
 
         else:
             id = request.POST.get("id")
             artist = request.POST.get("artist")
             image_url = request.POST.get("image_url")
             FollowedArtist.objects.create(user=request.user, id=id, name=artist, image_url =image_url)
+            update = FollowedArtist.objects.filter(user= request.user)
+            objects = []
+            for things in update:
+                objects.append({
+                    "id":things.id,
+                    "artist": things.name,
+                    "image_url": things.image_url
+                })
+            return JsonResponse({"follow":"following", "object":objects})
 
         return redirect(previous_page)
 
@@ -198,7 +217,7 @@ class PlaySongView(LoginRequiredMixin, View):
 
         song.save_song(**song_details)
 
-        return redirect(previous_page)
+        return JsonResponse(song_details)
     
 
 class LogoutView(View):

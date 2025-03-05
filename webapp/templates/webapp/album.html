@@ -35,21 +35,27 @@
         <div class="song-table">
             
             <table>
-                <tr>
-                    <th>#</th>
-                    <th class="title">Title</th>
-                    <th>Duration</th>
-                </tr>
-                {% for track in album_details.track_list  %}
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="title">Title</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for track in album_details.track_list  %}
                 <tr>
                     
                         <td>{{track.track_number}}</td>
                         <td class="title">
-                            <a href="{% url "song" track.track_id %}">
+                            <a href="{% url "song" track.track_id %}" class="the-music">
                                 <div class="song-detail">
                                     <div>
                                         <h4>{{track.track_name}}</h4>
-                                        <p>{{track.track_artist}}</p>
+                                        {% for artist in track.track_artist %}
+                                        <a href="{% url "artist_profile" artist.id %}" class="artist-deet">{{artist.name}}</a> 
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </a>
@@ -59,8 +65,8 @@
                 </tr>
                 
                 {% endfor %}
+                </tbody>
                 
-    
             </table>
 
         </div>

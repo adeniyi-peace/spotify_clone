@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="second">
-                        <p>artist</p>
+                        <p>Artist</p>
                     </div>
                 </div>
         </div>
@@ -42,7 +42,7 @@
     <div class="popular-album-content">
         {% for album in pop_albums %}
         <div class="album-card">
-            <a href="">
+            <a href="{% url "album" album.album_id %}">
                 <img src="{{album.album_image_url}}" alt="{{album.album_name}}" >
                 
                 <div class="card">

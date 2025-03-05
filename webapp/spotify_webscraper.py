@@ -102,7 +102,10 @@ def get_artist_details(artist_id):
             else:
                 header_image_url = None
 
-            gallery_image_url = response_data["data"]["artist"]["visuals"]["gallery"]["items"][0]["sources"][0].get("url")
+            if  response_data["data"]["artist"]["visuals"]["gallery"]["items"]:
+                gallery_image_url = response_data["data"]["artist"]["visuals"]["gallery"]["items"][0]["sources"][0].get("url")
+            else:
+                gallery_image_url = None
             albums = []
             tracks = []
 
@@ -180,28 +183,33 @@ def get_album_details(album_id):
                 track_name = items.get("name")
                 track_number = items.get("track_number")
                 track_duration = items.get("duration_ms")
-                track_artist = items["artists"][0].get("name")
+                track_artists = []
 
-                if  len(items["artists"])>1:
-                    feat = "  feat. "
+                for artist in items["artists"]:
+                    id = artist.get("id")
+                    artist = artist.get("name")
+                    track_artists.append({"name":artist, "id":id})
 
-                    for item in items["artists"]:
-                        if item == items["artists"][0]:
-                            pass
-                        else:
-                            feat += item.get("name")
+                # if  len(items["artists"])>1:
+                #     feat = "  feat. "
 
-                    track_artist += feat
+                #     for item in items["artists"]:
+                #         if item == items["artists"][0]:
+                #             pass
+                #         else:
+                #             feat += item.get("name")
+
+                #     track_artist += feat
 
                 track_list.append({"track_id":track_id, "track_name":track_name, "track_number":track_number,
-                                "track_duration":track_duration, "track_artist":track_artist})
+                                "track_duration":track_duration, "track_artist":track_artists})
                 
             return {"name":name, "album_cover":album_cover, "artist":artist,
                     "artist_id":artist_id, "total_tracks":total_tracks, "release_date":release_date,
                     "track_list":track_list}
         
         else:
-            print("Error getting album data")
+            print("Error getting album data ", response.status_code)
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching artist data: {e}")
@@ -260,17 +268,22 @@ def get_search(query):
                 artists.append({"id":id, "name":name, "image_url":image_url})
 
             for track in response_data["tracks"].get("items"):
-                id = track["data"].get("id")
-                name = track["data"].get("name")
-                album = track["data"]["albumOfTrack"].get("name")
-                album_id = track["data"]["albumOfTrack"].get("id")
-                album_cover = track["data"]["albumOfTrack"]["coverArt"]["sources"][0].get("url")
-                artist_id = track["data"]["artists"]["items"][0].get("uri").split(":")[-1]
-                artist = track["data"]["artists"]["items"][0]["profile"].get("name")
-                duration = track["data"]["duration"].get("totalMilliseconds")
+                if track["data"]:
+                    id = track["data"].get("id")
+                    name = track["data"].get("name")
+                    album = track["data"]["albumOfTrack"].get("name")
+                    album_id = track["data"]["albumOfTrack"].get("id")
+                    album_cover = track["data"]["albumOfTrack"]["coverArt"]["sources"][0].get("url")
+                    track_artists = []
+                    duration = track["data"]["duration"].get("totalMilliseconds")
 
-                tracks.append({"id":id, "name":name, "album":album, "album_id":album_id, "album_cover":album_cover,
-                            "artist_id":artist_id, "artist":artist, "duration":duration})
+                    for artist in track["data"]["artists"]["items"]:
+                        artist_name = artist["profile"].get("name")
+                        artist_id = artist.get("uri").split(":")[-1]
+                        track_artists.append({"id":artist_id, "name":artist_name})
+
+                    tracks.append({"id":id, "name":name, "album":album, "album_id":album_id, "album_cover":album_cover,
+                                "artists":track_artists, "duration":duration})
 
             for top in response_data["topResults"].get("items"):
                 if "artist" in top["data"].get("uri") and query.lower() in top["data"]["profile"].get("name").lower():

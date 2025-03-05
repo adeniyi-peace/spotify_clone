@@ -15,14 +15,25 @@
 .featured-charts .featured-charts-content{
     display: flex;
     margin: 1rem 0;
-    
-    
+}
+
+.popular-artist .artist-card:hover,
+.popular-albums .album-card:hover,
+.featured-charts .featured-card:hover{
+    background-color: #7c7c7c33;
+}
+
+.popular-artist .artist-card .first a:hover,
+.popular-albums .album-card .first a:hover,
+.popular-albums .album-card .second a:hover{
+    text-decoration: underline;
 }
 
 .popular-artist .artist-card,
 .popular-albums .album-card,
 .featured-charts .featured-card{
     margin-right: 24px;
+    padding: 0.5rem;
 }
 
 .popular-artist .artist-card:last-of-type,
@@ -37,14 +48,20 @@
     border-radius: 6rem;
 }
 
-.popular-albums,
-.featured-charts{
-    margin-top: 3.5rem;
-}
 
 .popular-albums .album-card img,
 .featured-charts .featured-card img{
     width: 10rem;
     height: 10rem;
     border-radius: 8px;
+}
+
+.first {
+    margin: 0.5rem 0;
+}
+
+.second,
+.second a{
+    font-size: .9rem;
+    color: #afafaf;
 }

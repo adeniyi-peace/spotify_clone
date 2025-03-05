@@ -10,8 +10,8 @@
 
 <div class="type">
     <button type="button" id="btn-all">All</button>
-    <button type="button" id="btn-artist-alone">Artist</button>
     <button type="button" id="btn-songs-alone">Songs</button>
+    <button type="button" id="btn-artist-alone">Artist</button>
     <button type="button" id="btn-album-alone">Album</button>
 </div>
 
@@ -50,21 +50,25 @@
 
             <div class="container">
                 {% for tracks in top_tracks  %}
-                <div class="song-container">
-
-                    <a href="{% url "song" tracks.id %}">
-                        <div class="song-detail">
-                            <img src="{{tracks.album_cover}}" alt="{{tracks.name}}" >
-                            <div>
-                                <p>{{tracks.name}}</p>
-                                <p>{{tracks.artist}}</p>
+                <div class="song-container the-music" href="{% url "song" tracks.id %}">
+                            <div class="song-detail">
+                                <img src="{{tracks.album_cover}}" alt="{{tracks.name}}" >
+                                <div>
+                                    <p>{{tracks.name}}</p>
+                                    
+                                    <div class="useless">
+                                        {% for artist in tracks.artists %}
+                                        <a href="{% url "artist_profile" artist.id %}">{{artist.name}}  </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-        
-                        <div class="duration">
-                            <p>{{tracks.duration|miliseconds_to_minutes}}</p>
-                        </div>
-                    </a>
+            
+                            <div class="duration">
+                                <p>{{tracks.duration|miliseconds_to_minutes}}</p>
+                            </div>
+                        
+                    
     
                 </div>
                 {% endfor %}
@@ -137,7 +141,7 @@
 
         {% for artist in artists  %}
         <div class="artist-card">
-            <a href=""{% url "artist_profile" artist.id %}"">
+            <a href="{% url "artist_profile" artist.id %}">
                 <img src="{{artist.image_url}}" alt="{{artist.name}}" >
                 
                 <div class="card">
@@ -163,33 +167,41 @@
     <div class="table">
 
         <table>
-            <tr>
-                <th>#</th>
-                <th class="title">Title</th>
-                <th>Album</th>
-                <th>Duration</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="title">Title</th>
+                    <th>Album</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
             
-            {% for track in tracks  %}
-            <tr>
-                
-                    <td>{{forloop.counter}}</td>
-                    <td>
-                        <a href="{% url "song" track.id %}">
-                            <div class="song-detail">
-                            <img src="{{track.album_cover}}" alt="{{track.name}}" >
-                                <div>
-                                    <p>{{track.name}}</p>
-                                    <p>{{track.artist}}</p>
+            <tbody>
+                {% for track in tracks  %}
+                <tr>
+                    
+                        <td>{{forloop.counter}}</td>
+                        <td>
+                            <div href="{% url "song" track.id %}" class="the-music">
+                                <div class="song-detail">
+                                <img src="{{track.album_cover}}" alt="{{track.name}}" >
+                                    <div>
+                                        <p>{{track.name}}</p>
+                                        <div class="useless">
+                                            {% for artist in track.artists %}
+                                            <a href="{% url "artist_profile" artist.id %}">{{artist.name}}  </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </a>
-                    </td>
-                    <td>{{track.album}}</td>
-                    <td>{{track.duration|miliseconds_to_minutes}}</td>
-                
-            </tr>
-            {% endfor %}
+                        </td>
+                        <td>{{track.album}}</td>
+                        <td>{{track.duration|miliseconds_to_minutes}}</td>
+                    
+                </tr>
+                {% endfor %}
+            </tbody>
 
             
         </table>

@@ -25,7 +25,7 @@
         <div class="play-following">
             <a href="" class="play-all"><i class="fa fa-play-circle" aria-hidden="true"></i></a>
             
-                <form action="{% url "addremove" %}" method="post">
+                <form action="{% url "addremove" %}" method="post" id='artistfollowingform'>
                     {% csrf_token %}
                     <input type="hidden" name="id" value="{{artist_details.id}}">
                     <input type="hidden" name="artist" value="{{artist_details.name}}">
@@ -33,7 +33,7 @@
                     {% if followed  %}
                     <button type="submit" class="following">Following</button>
                     {% else %}
-                    <button type="submit" class="following">Follow</button>
+                    <button type="submit" class="following" >Follow</button>
                     {% endif %}
                 </form>
                  
@@ -48,7 +48,7 @@
     
             <div class="popular-container">
                 {% for tracks in artist_details.tracks %}
-                <a href="{% url "song" tracks.track_id %}">
+                <a href="{% url "song" tracks.track_id %}" class="the-music">
                     <div class="popular-card">
                     
                         <div class="sn">
@@ -83,22 +83,24 @@
             <div class="discograpy-container">
 
                 {% for album in artist_details.albums %}
-                <div class="album-card">
-                    <div class="image">
-    
-                        <img src="{{album.album_cover}}" alt="{{album.album_name}}" >
-    
+                <a href="{% url "album" album.album_id %}">
+                    <div class="album-card">
+                        <div class="image">
+        
+                            <img src="{{album.album_cover}}" alt="{{album.album_name}}" >
+        
+                        </div>
+        
+                        <div class="album-name">
+                            <a href="{% url "album" album.album_id %}">{{album.album_name}}</a>
+                        </div>
+        
+                        <div class="year">
+                            <p>{{album.release_year}}.Album</p>
+                        </div>
+        
                     </div>
-    
-                    <div class="album-name">
-                        <p><a href="{% url "album" album.album_id %}">{{album.album_name}}</a></p>
-                    </div>
-    
-                    <div class="year">
-                        <p>{{album.release_year}}.single</p>
-                    </div>
-    
-                </div>
+                </a>
                 {% endfor %}
     
     
@@ -130,3 +132,7 @@
 </section>
 
 {% endblock contents %}
+
+{% block javascripts %}
+<script src="{% static "webapp/js/artist_profile.js" %}"></script>
+{% endblock javascripts %}

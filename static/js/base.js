@@ -1,19 +1,35 @@
-// const audioPlayer = document.getElementById("audio-player")
-// const play_pause_btn =document.getElementById("play-pause")
-// const duration =document.getElementById("total-duration")
-// const current_time = document.getElementById("current-time")
-// const progress_bar = document.getElementById("progress-bar")
-// const progress = document.getElementById("progress")
+$(document).ready(function(){
+    $(".the-music").click(function(event) {
+        event.preventDefault();
+        
+        const data_id = $(this).data("id")
+        const url = $(this).attr("href")
 
-// playButton.addEventListener('click', () => {
-//     if (playButton.textContent === "Play") {
-//         playSong(mySongUrl);
-//         playButton.textContent = "Pause";
-//     } else {
-//         songControls.pause();
-//         playButton.textContent = "Play";
-//     }
-// });
+        $.ajax({
+            url : url,
+            type : "GET",
+            success : function(data) {
+                $("#playsong-image").attr('src', data.cover_image);
+                $("#playsongname").html(data.name)
+                $("#audio-player").attr("src", data.audio_url)
+                document.getElementById("audio-player").load();
+                document.getElementById("audio-player").play();
+                $("#playsongartist").empty();
+
+                for (let key in data.artists) {
+                    let temp = `<a href="/artist-profile/${data.artists[key].id}/">${data.artists[key].artist_name} </a>`
+                    
+                    $("#playsongartist").append(temp);
+                }
+            },
+
+            error: function(error) {
+                console.error("AJAX Error:", error);
+                // Optionally display an error message to the user
+            }
+        })
+    })
+})
 
 
 document.addEventListener('DOMContentLoaded', () => {  // Wait for the DOM to load

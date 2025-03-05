@@ -4,6 +4,48 @@
     box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+    /* Mobile styles here */
+    header .home-and-search {
+      position: static; /* Remove absolute positioning */
+      transform: none;
+      flex-direction: column; /* Stack elements vertically */
+      align-items: center;
+    }
+  
+    header .home-and-search .search input {
+      width: 90%; /* Adjust width for mobile */
+    }
+  
+    .sidebar-main {
+      flex-direction: column; /* Stack sidebar and main content */
+      height: auto;
+    }
+  
+    .sidebar-main .sidebar,
+    .sidebar-main .main {
+      width: 100%; /* Full width on mobile */
+      margin-left: 0;
+    }
+  
+    .play-area .play-control {
+      position: static;
+      transform: none;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .play-area .play-control .seek .progress-bar {
+      width: 90%;
+    }
+  
+    .play-area .other-things {
+      margin-right: 0;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
 body {
     font-family: Arial, sans-serif;
     background-color: black;
@@ -199,14 +241,43 @@ header .login-signup .login{
     margin-left: .5rem;
 }
 
+.sidebar-main .sidebar .second-scroll{
+    display: flex;
+    position: relative;
+}
+
+
+
 .sidebar-main .sidebar .artists{
     margin: 0rem 0;
     overflow-y: scroll;
     height: 19rem;
+    padding-right: 17px; /* Prevent content jump when scrollbar is hidden */
+    box-sizing: border-box;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    width: calc(100% + 17px); /* Compensate for scrollbar width */
+}
+
+.sidebar-main .sidebar .artists::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .sidebar-main .sidebar .artists .artist-card{
-    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.sidebar-main .sidebar .artists .artist-card:hover{
+    background-color: #7c7c7c33;
+}
+
+.sidebar-main .sidebar .artists .artist-card:active{
+    background-color: #42424233;
+}
+
+.sidebar-main .sidebar .artists .artist-card .artist-name p{
+    font-size: .9rem;
+    color: #afafaf;
 }
 
 .sidebar-main .sidebar .artists .artist-card a {
@@ -218,6 +289,32 @@ header .login-signup .login{
     width: 3rem;
     margin-right: 1rem;
 }
+
+.custom-scrollbar2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    border-radius: 4px;
+}
+  
+.scroll-thumb2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    background: #888;
+    cursor: grab;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+}
+
+.sidebar-main .sidebar .second-scroll:hover .scroll-thumb2{
+    opacity: 1;
+    transition: opacity 1s ease-in
+}
+
 
 .sidebar-main .sidebar .no-artist{
     margin: 3rem auto;
@@ -287,9 +384,50 @@ header .login-signup .login{
     border-radius: 8px;
     margin-left: .5rem;
     width: 70%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    position: relative;
+    overflow: hidden;
 }
+
+.sidebar-main .main .scrollable-content{
+    width: calc(100% + 17px); /* Compensate for scrollbar width */
+    height: 28rem;
+    overflow-y: scroll; /* Allow content to scroll */
+    padding-right: 17px; /* Prevent content jump when scrollbar is hidden */
+    box-sizing: border-box;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.scrollable-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.custom-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    border-radius: 4px;
+}
+  
+.scroll-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    background: #888;
+    cursor: grab;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+}
+
+.sidebar-main .main:hover .scroll-thumb{
+    opacity: 1;
+    transition: opacity .5s ease-in;
+}
+
+
 
 
 
