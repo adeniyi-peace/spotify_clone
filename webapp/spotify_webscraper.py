@@ -100,7 +100,7 @@ def get_artist_details(artist_id):
             if  response_data["data"]["artist"]["visuals"]["avatarImage"]:
                 avatar_image_url = response_data["data"]["artist"]["visuals"]["avatarImage"]["sources"][1].get("url")
             else:
-                header_image_url = None
+                avatar_image_url = None
 
             if  response_data["data"]["artist"]["visuals"]["gallery"]["items"]:
                 gallery_image_url = response_data["data"]["artist"]["visuals"]["gallery"]["items"][0]["sources"][0].get("url")

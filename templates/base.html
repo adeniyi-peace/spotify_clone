@@ -30,11 +30,11 @@
             <div>
                 <div class="home">
                     <a href="{% url "index" %}">
-                        <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25">
-                        <!-- <svg data-encore-id="icon" role="img" viewBox="0 0 24 24">
+                        <!-- <img src="{% static "home icon.png" %}" alt="home icon" width="25" height="25"> -->
+                        <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="0 0 24 24" style="fill:white">
                             <path d="M13.5 1.515a3 3 0 0 0-3 0L3 5.845a2 2 0 0 0-1 1.732V21a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-6h4v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V7.577a2 2 0 0 0-1-1.732l-7.5-4.33z">
                             </path>
-                        </svg> -->
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -43,7 +43,12 @@
                     {% csrf_token %}
                     <input type="text" placeholder="What do you want to play?" name="query">
                 </form>
-                <h4><img src="{% static "browse icon.png" %}" alt="browse icon" width="30" height="30"></h4>
+                <h4>   
+                    <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="0 0 24 24" style="fill:white">
+                        <path d="M15 15.5c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"></path>
+                        <path d="M1.513 9.37A1 1 0 0 1 2.291 9h19.418a1 1 0 0 1 .979 1.208l-2.339 11a1 1 0 0 1-.978.792H4.63a1 1 0 0 1-.978-.792l-2.339-11a1 1 0 0 1 .201-.837zM3.525 11l1.913 9h13.123l1.913-9H3.525zM4 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4h-2V3H6v3H4V2z"></path>
+                    </svg>
+                </h4>
             </div>
         </div>
 
@@ -84,7 +89,9 @@
         <section class="sidebar" id="sidebar">
             <div class="your-library">
                 <div class="library-icon">
-                    <img src="{% static "library icon.png" %}" alt="library icon" width="30" height="30">
+                    <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="0 0 24 24" style="fill:white">
+                        <path d="M3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zM15.5 2.134A1 1 0 0 0 14 3v18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V6.464a1 1 0 0 0-.5-.866l-6-3.464zM9 2a1 1 0 0 0-1 1v18a1 1 0 1 0 2 0V3a1 1 0 0 0-1-1z"></path>
+                    </svg>
                     <h4>Your Library</h4>
 
                     <div class="cancel" id="cancel">
@@ -100,7 +107,9 @@
                     
                     <div>
                         <h5>Recents</h5>
-                        <img src="{% static "recent icon.png" %}" alt="recent icon" width="30" height="30">
+                        <svg data-encore-id="icon" role="img" height="30" width="30" viewBox="-4 -4 24 24" style="fill:white">
+                            <path d="M15 14.5H5V13h10v1.5zm0-5.75H5v-1.5h10v1.5zM15 3H5V1.5h10V3zM3 3H1V1.5h2V3zm0 11.5H1V13h2v1.5zm0-5.75H1v-1.5h2v1.5z"></path>
+                        </svg>
                     </div>
                 </div>
                 
@@ -205,7 +214,11 @@
                 <button id="prev" class="control-btn"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
                 <button id="play-pause" class="control-btn play-btn"><i class="fa fa-play-circle" aria-hidden="true"></i></button>
                 <button id="next" class="control-btn"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
-                <button class="control-btn"><img src="{% static "repeat icon.png" %}" alt="repeat icon" width="21" height="21"></button>
+                <button class="control-btn">
+                    <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="-4 -5 24 24" style="fill:white">
+                        <path d="M0 4.75A3.75 3.75 0 0 1 3.75 1h8.5A3.75 3.75 0 0 1 16 4.75v5a3.75 3.75 0 0 1-3.75 3.75H9.81l1.018 1.018a.75.75 0 1 1-1.06 1.06L6.939 12.75l2.829-2.828a.75.75 0 1 1 1.06 1.06L9.811 12h2.439a2.25 2.25 0 0 0 2.25-2.25v-5a2.25 2.25 0 0 0-2.25-2.25h-8.5A2.25 2.25 0 0 0 1.5 4.75v5A2.25 2.25 0 0 0 3.75 12H5v1.5H3.75A3.75 3.75 0 0 1 0 9.75v-5z"></path>
+                    </svg>
+                </button>
             </div>
             
             <div class="seek">
@@ -226,9 +239,16 @@
         </div>
 
         <div class="other-things">
-            <img src="{% static "now playing icon.png" %}" alt="now playing icon" width="20" height="20">
-            <img src="{% static "lyrics icon.png" %}" alt="lyrics icon" width="20" height="20">
-            <img src="{% static "queue icon.png" %}" alt="queue icon" width="20" height="20">
+            <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="-4 -5 24 24" style="fill:white">
+                <path d="M11.196 8 6 5v6l5.196-3z"></path>
+                <path d="M15.002 1.75A1.75 1.75 0 0 0 13.252 0h-10.5a1.75 1.75 0 0 0-1.75 1.75v12.5c0 .966.783 1.75 1.75 1.75h10.5a1.75 1.75 0 0 0 1.75-1.75V1.75zm-1.75-.25a.25.25 0 0 1 .25.25v12.5a.25.25 0 0 1-.25.25h-10.5a.25.25 0 0 1-.25-.25V1.75a.25.25 0 0 1 .25-.25h10.5z"></path>
+            </svg>
+            <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="-4 -5 24 24" style="fill:white">
+                <path d="M13.426 2.574a2.831 2.831 0 0 0-4.797 1.55l3.247 3.247a2.831 2.831 0 0 0 1.55-4.797zM10.5 8.118l-2.619-2.62A63303.13 63303.13 0 0 0 4.74 9.075L2.065 12.12a1.287 1.287 0 0 0 1.816 1.816l3.06-2.688 3.56-3.129zM7.12 4.094a4.331 4.331 0 1 1 4.786 4.786l-3.974 3.493-3.06 2.689a2.787 2.787 0 0 1-3.933-3.933l2.676-3.045 3.505-3.99z"></path>
+            </svg>
+            <svg data-encore-id="icon" role="img" height="25" width="25" viewBox="-4 -5 24 24" style="fill:white">
+                <path d="M15 15H1v-1.5h14V15zm0-4.5H1V9h14v1.5zm-14-7A2.5 2.5 0 0 1 3.5 1h9a2.5 2.5 0 0 1 0 5h-9A2.5 2.5 0 0 1 1 3.5zm2.5-1a1 1 0 0 0 0 2h9a1 1 0 1 0 0-2h-9z"></path>
+            </svg>
         </div>
 
         {% else %}

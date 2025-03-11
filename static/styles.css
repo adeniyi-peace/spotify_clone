@@ -442,7 +442,7 @@ header .login-signup .login{
 }
 
 .play-area .song p{
-    font-size: 0.5rem;
+    font-size: 0.9rem;
     color: #afafaf;
 }
 
@@ -520,7 +520,7 @@ header .login-signup .login{
     margin-right: 16rem;
 }
 
-.play-area .other-things img{
+.play-area .other-things svg{
     margin-right: 1rem;
 }
 
@@ -541,6 +541,19 @@ header .login-signup .login{
 
 .play-area .not-logged-in .sign-up a{
     color: black;
+}
+
+.no-artist-pic{
+    width: 10rem;
+    height: 10.5rem;
+    border-radius: 6rem;
+    background-color: #81818133;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    fill: white;
+    box-shadow: 0 2px 2px black ;
 }
 
 /* Small devices (phones, less than 768px) */
@@ -705,6 +718,12 @@ header .login-signup .login{
 
     .play-area .other-things {
         display: none;
+    }
+
+    .no-artist-pic{
+        width: 6rem;
+        height: 6rem;
+        border-radius: 3rem;
     }
 }
 

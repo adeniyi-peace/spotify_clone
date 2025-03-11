@@ -16,10 +16,22 @@
     </div>
 
     <div class="profile">
-        <div class="artist-name">
-            <p>Verified Artist</p>
-            <h1>{{artist_details.name}}</h1>
-            <p class="most-lisen">{{artist_details.monthly_listeners|intcomma }} monthly listeners</p>
+        <div class="{% if artist_details.header_image_url == None %}profile-no-gallery-image{% endif %}">
+            {% if artist_details.header_image_url == None %}
+                    {% if artist_details.avatar_image_url == None %}
+                        {% include "webapp/includes/no-artist.html" %}
+                    {% else %}
+                        <div class="avatar-image-url">
+                            <img src="{{artist_details.avatar_image_url}}" alt="{{artist_details.name}}">
+                        </div>
+                    {% endif %}
+            {% endif %}
+
+            <div class="artist-name">
+                <p>Verified Artist</p>
+                <h1>{{artist_details.name}}</h1>
+                <p class="most-lisen">{{artist_details.monthly_listeners|intcomma }} monthly listeners</p>
+            </div>
         </div>
     
         <div class="play-following">
@@ -110,8 +122,19 @@
         <div class="about">
             <h2>About</h2>
 
-            <div class="about-container">
+            <div class="about-container {% if artist_details.gallery_image_url == None %}no-gallery-image{% endif %}">
+                {% if artist_details.gallery_image_url == None %}
+                    {% if artist_details.avatar_image_url == None %}
+                        {% include "webapp/includes/no-artist.html" %}
+                    {% else %}
+                        <div class="avatar-image-url">
+                            <img src="{{artist_details.avatar_image_url}}" alt="{{artist_details.name}}">
+                        </div>
+                    {% endif %}
+                
+                {% else %}
                 <img src="{{artist_details.gallery_image_url}}" alt="{{artist_details.name}}" >
+                {% endif %}
                 <div class="artist-detail">
         
                     <h5>13,876,702 Monthly Listeners</h5>

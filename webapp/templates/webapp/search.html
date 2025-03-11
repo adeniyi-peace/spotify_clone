@@ -27,9 +27,13 @@
                     {% elif top_result.type == "Artist" %} href="{% url "artist_profile" top_result.id %}"
                     {% endif %}
                     >
+                    {% if top_result.image_url == None  %}
+                        {% include "webapp/includes/no-artist.html" %}
+                    {% else %}
                     <div class="image">
                         <img src="{{top_result.image_url}}" alt="{{top_result.name}}" {% if top_result.type == "Album" %}class="albumtype"{% endif %}>
                     </div>
+                    {% endif %}
 
                     <div class="title">
                         <h3>{{top_result.name}}</h3>
@@ -89,7 +93,11 @@
             {% for artist in top_artists  %}
             <div class="artist-card">
                 <a href="{% url "artist_profile" artist.id %}">
+                    {% if artist.image_url == None  %}
+                    {% include "webapp/includes/no-artist.html" %}
+                    {% else %}
                     <img src="{{artist.image_url}}" alt="{{artist.name}}" >
+                    {% endif %}
                     
                     <div class="card">
                         <div class="first">
@@ -142,7 +150,11 @@
         {% for artist in artists  %}
         <div class="artist-card">
             <a href="{% url "artist_profile" artist.id %}">
+                {% if artist.image_url == None  %}
+                {% include "webapp/includes/no-artist.html" %}
+                {% else %}
                 <img src="{{artist.image_url}}" alt="{{artist.name}}" >
+                {% endif %}
                 
                 <div class="card">
                     <div class="first">

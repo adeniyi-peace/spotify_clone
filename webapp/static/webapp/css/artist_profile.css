@@ -20,6 +20,16 @@
     
 }
 
+.all .profile .profile-no-gallery-image{
+    display: flex;
+}
+
+.all .profile .profile-no-gallery-image img{
+    width: 10.5rem;
+    height: 10.5rem;
+    border-radius: 6rem;
+}
+
 .all .profile .artist-name{
     padding: 1rem ;
 }
@@ -156,6 +166,17 @@
     padding: .5rem;
 }
 
+.all .about .no-gallery-image{
+    height: 100%;
+    background-color: #7c7c7c33;
+}
+
+.all .about .avatar-image-url img{
+    width: 10.5rem;
+    height: 10.5rem;
+    border-radius: 6rem;
+}
+
 .all .about img{
     width: 100%;
     border-radius: 12px;
@@ -164,6 +185,10 @@
 .all .about .artist-detail{
     position: relative;
     top: -10rem;
+}
+
+.all .about .no-gallery-image .artist-detail{
+    top: 0;
 }
 
 .all .about .artist-detail p{
