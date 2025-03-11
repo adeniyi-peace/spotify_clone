@@ -433,6 +433,7 @@ def search_song(id):
                 return None
         else:
             print("Error getting song data")
+            return None
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching artist data: {e}")

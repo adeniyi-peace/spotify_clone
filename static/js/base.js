@@ -31,6 +31,24 @@ $(document).ready(function(){
     })
 })
 
+const menu = document.getElementById("menu")
+const sideBar = document.getElementById("sidebar")
+const cancel = document.getElementById("cancel")
+
+menu.addEventListener("click", () => {
+    if (sideBar.style.display == "none"){
+        sideBar.style.display = "block"
+    }
+
+    else {
+        sideBar.style.display = "none"
+    }
+    
+})
+
+cancel.addEventListener("click", () => {
+    sideBar.style.display = "none"
+})
 
 document.addEventListener('DOMContentLoaded', () => {  // Wait for the DOM to load
 

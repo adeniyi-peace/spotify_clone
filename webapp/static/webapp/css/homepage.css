@@ -15,6 +15,15 @@
 .featured-charts .featured-charts-content{
     display: flex;
     margin: 1rem 0;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.popular-artist .artist-content::-webkit-scrollbar,
+.popular-albums .popular-album-content::-webkit-scrollbar,
+.featured-charts .featured-charts-content::-webkit-scrollbar{
+    display: none;
 }
 
 .popular-artist .artist-card:hover,
@@ -64,4 +73,47 @@
 .second a{
     font-size: .9rem;
     color: #afafaf;
+}
+
+@media (max-width: 1024px) {
+    .artist-card, .album-card, .featured-card {
+        width: calc(33.33% - 1rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .artist-card, .album-card, .featured-card {
+        width: calc(50% - 1rem);
+    }
+
+    .popular-artist .artist-card,
+    .popular-albums .album-card,
+    .featured-charts .featured-card{
+        margin-right: 0;
+    }
+
+    
+
+    .popular-artist .artist-card img{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 3rem;
+    }
+    
+    
+    
+    .popular-albums .album-card img,
+    .featured-charts .featured-card img{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-card, .album-card, .featured-card {
+        width: 100%;
+    }
+
+    
 }

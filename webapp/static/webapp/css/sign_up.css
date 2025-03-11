@@ -156,3 +156,20 @@ section .back button{
     accent-color: #0ba53f;
 }
 
+@media (max-width: 768px) {
+    .container{
+        width: 100%;
+    }
+
+    section{
+        width: 90%;
+    }
+
+    .container .form-control input{
+        width: 90%;
+    }
+
+    .container form button{
+        width: 90%;
+    }
+}

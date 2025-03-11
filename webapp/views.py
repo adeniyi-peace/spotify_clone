@@ -215,6 +215,9 @@ class PlaySongView(LoginRequiredMixin, View):
 
         song_details = search_song(id)
 
+        if song_details is None:
+            return render(request, "webapp/error.html")
+
         song.save_song(**song_details)
 
         return JsonResponse(song_details)

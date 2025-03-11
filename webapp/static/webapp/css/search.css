@@ -45,7 +45,7 @@
     padding: 2rem;
     border-radius: 12px;
     background-color: #222222;
-    height: 15rem;
+    height: 100%;
 }
 
 
@@ -203,6 +203,7 @@
 
 .artist .artist-content .artist-card{
     padding: 1rem;
+    width: 100%;
 }
 
 
@@ -280,6 +281,7 @@
 
 .album-alone .album-card{
     padding: 1rem;
+    width: 100%;
 }
 
 .album-alone .album-card img{
@@ -299,4 +301,83 @@
 .all .album-result .album-card .second a{
     font-size: .9rem;
     color: #afafaf;
+}
+
+
+@media (max-width: 768px){
+    .first .top-result .result-card h3{
+        font-size: 1.2rem;
+    }
+
+    .all .first .songs .container .song-container p{
+        font-size: 0.85rem;
+    }
+
+    .all .first .songs .container .song-container .useless{
+        font-size: 0.65rem;
+    }
+
+    .all .first .song-container img{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .all .artist-result .artist-content,
+    .all .album-result .album-container{
+        overflow-x: scroll;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .all .artist-result .artist-content::-webkit-scrollbar,
+    .all .album-result .album-container::-webkit-scrollbar{
+        display: none;
+    }
+
+    .artist-card, .album-card, .featured-card {
+        width: calc(50% - 1rem);
+    }
+
+    .all .artist-result .artist-card,
+    .all .album-result .album-card{
+        margin-right: 0;
+    }
+
+    
+
+    .all .artist-result .artist-card img{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 3rem;
+    }
+    
+    
+    
+    .all .album-result .album-card img{
+        width: 5rem;
+        height: 5rem;
+        border-radius: 8px;
+    }
+
+    .artist,
+    .album-alone{
+        padding: 0 0rem;
+    }
+
+    .artist .artist-content,
+    .album-alone .album-container{
+        grid-template-columns: auto auto auto;
+    }
+
+    .artist .artist-content .artist-card img{
+        width: 6rem;
+        height: 6rem;
+        border-radius: 3rem;
+    }
+
+    .album-alone .album-card img{
+        width: 6rem;
+        height: 6rem;
+    }
+
 }

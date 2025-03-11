@@ -4,47 +4,6 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-    /* Mobile styles here */
-    header .home-and-search {
-      position: static; /* Remove absolute positioning */
-      transform: none;
-      flex-direction: column; /* Stack elements vertically */
-      align-items: center;
-    }
-  
-    header .home-and-search .search input {
-      width: 90%; /* Adjust width for mobile */
-    }
-  
-    .sidebar-main {
-      flex-direction: column; /* Stack sidebar and main content */
-      height: auto;
-    }
-  
-    .sidebar-main .sidebar,
-    .sidebar-main .main {
-      width: 100%; /* Full width on mobile */
-      margin-left: 0;
-    }
-  
-    .play-area .play-control {
-      position: static;
-      transform: none;
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .play-area .play-control .seek .progress-bar {
-      width: 90%;
-    }
-  
-    .play-area .other-things {
-      margin-right: 0;
-      justify-content: center;
-      width: 100%;
-    }
-  }
 
 body {
     font-family: Arial, sans-serif;
@@ -73,6 +32,17 @@ header .logo img{
     height: 2rem;
 }
 
+header .menu{
+    display: none;
+    margin-left: 1rem;
+    margin-right: -1rem;
+}
+
+header .menu i{
+    font-size: 1.5rem;
+}
+
+
 header .home-and-search{
     display: flex;
     margin: 0 auto;
@@ -97,8 +67,12 @@ header .home-and-search .search{
     align-items: center;
 }
 
+header .home-and-search .search form {
+    width: 29rem; 
+  }
+
 header .home-and-search .search input{
-    width: 29rem;
+    width: 100%;
     height: 2.5rem;
     border: none;
 }
@@ -212,10 +186,18 @@ header .login-signup .login{
 .sidebar-main .sidebar .library-icon{
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .sidebar-main .sidebar .library-icon h4{
     margin-left: 1rem;
+}
+
+.sidebar-main .sidebar .library-icon .cancel{
+    position: absolute;
+    right: 0;
+    display: none;
+    cursor: pointer;
 }
 
 .sidebar-main .sidebar .tag{
@@ -459,6 +441,11 @@ header .login-signup .login{
     padding: 1rem;
 }
 
+.play-area .song p{
+    font-size: 0.5rem;
+    color: #afafaf;
+}
+
 .play-area .play-control{
     margin: 0 auto;
     position: absolute;
@@ -554,4 +541,197 @@ header .login-signup .login{
 
 .play-area .not-logged-in .sign-up a{
     color: black;
+}
+
+/* Small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+
+    html, body {
+        height: 100%;
+    }
+
+    
+    body {
+        padding: 0;
+        margin: 0;
+        min-height: 100vh; /* Make sure body fills the viewport */
+        display: flex;
+        flex-direction: column;
+    }
+
+    header, 
+    .play-area {
+        width: 100%;
+    }
+
+    
+
+    header {
+        align-items: center;
+        padding: 1rem;
+    }
+
+    header .menu{
+        display: block;
+        cursor: pointer;
+    }
+
+
+    header .home-and-search {
+        position: static;
+        transform: none;
+        width: 50%;
+        margin-left: 2rem;
+    }
+
+    header .home-and-search .search{
+        width: 120%;
+    }
+
+    
+
+    header .home-and-search .home {
+        display: none; /* Hide the home button on small screens if needed */
+    }
+
+    header .logged-in, 
+    header .login-signup {
+        width: 100%;
+        justify-content: flex-end;
+        display: flex;
+        font-size: 0.8rem;
+    }
+
+    header .logged-in .exp-not-inst{
+        display: none;
+    }
+
+    header .logged-in .user .dropdown{
+        width: 40%;
+        
+    }
+
+    header .login-signup .signup{
+        padding: 0.3rem 0rem;
+
+    }
+    
+    header .login-signup .login{
+        padding: .3rem .9rem;
+        margin-left: 0.6rem;
+    }
+
+    /* Sidebar and main content stacking vertically */
+    .sidebar-main {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar-main .sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
+        display: none;
+        position: absolute;
+        z-index: 1;
+    }
+
+    .sidebar-main .sidebar .library-icon .cancel{
+        display: block;
+    }
+
+    .sidebar-main .main {
+        width: 100%;
+        margin-left: 0;
+        height: auto;
+        width: 100%;
+        margin: 0;
+        flex: 1; /* Fill the remaining space */
+    }
+
+    .sidebar-main .main .scrollable-content {
+        height: calc(100vh - 200px); /* Adjust height according to your header and footer */
+        max-height: none;
+    }
+
+    /* Play area adjustments */
+    .play-area {
+        padding: 1rem 0;
+        margin-top: auto; /* Stick it to the bottom */
+    }
+
+    
+    .play-area .play-control {
+        width: 100%;
+        margin-bottom: 1rem;
+        position: static;
+        transform: translate(0,0);
+        
+    }
+
+    .play-area .song {
+        justify-content: center;
+
+    }
+
+    .play-area .song h3{
+        font-size: 0.85rem;
+    }
+
+    .play-area .song p{
+        font-size: 0.65rem;
+        color: #afafaf;
+    }
+
+    .play-area .song div {
+        padding: 0 0.5rem;
+        text-align: center;
+    }
+
+    .play-area .play-control .player-controls{
+        width: 55%;
+    }
+    
+
+
+    
+    .play-area .play-control .seek{
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .play-area .play-control .seek .progress-bar {
+        width: 100%;
+    }
+
+    .play-area .other-things {
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    header .home-and-search .search input {
+        width: 100%;
+    }
+
+    .sidebar-main .sidebar {
+        width: 35%;
+    }
+
+    .sidebar-main .main {
+        width: 65%;
+    }
+
+    .play-area .song {
+        width: 40%;
+    }
+
+    .play-area .other-things {
+        display: none;
+    }
+
+    header .logged-in .exp-not-inst{
+        display: none;
+    }
 }

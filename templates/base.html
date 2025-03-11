@@ -21,6 +21,11 @@
                 <img src="{% static "Spotify_Primary_Logo_RGB_White.png" %}" alt="spotify logo" >
             </a>
         </div>
+
+        <div class="menu" id="menu">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+
         <div class="home-and-search">
             <div>
                 <div class="home">
@@ -44,9 +49,11 @@
 
         {% if user.is_authenticated %}
         <div class="logged-in">
-            <a href="#" class="explore"><strong>Explore Premuim</strong></a>
-            <a href="#" class="app">Install App</a>
-            <a href="#" class="not">notification</a>
+            <div class="exp-not-inst">
+                <a href="#" class="explore"><strong>Explore Premuim</strong></a>
+                <a href="#" class="app">Install App</a>
+            </div>
+            <a href="#" class="not"><i class="fa fa-bell-o" aria-hidden="true"></i></a>
             <div class="user">
                 <p>
                     <Strong>{{request.user.name|slice:":1"|upper}}</Strong>
@@ -74,11 +81,15 @@
 
     <section class="sidebar-main">
         
-        <section class="sidebar">
+        <section class="sidebar" id="sidebar">
             <div class="your-library">
                 <div class="library-icon">
                     <img src="{% static "library icon.png" %}" alt="library icon" width="30" height="30">
                     <h4>Your Library</h4>
+
+                    <div class="cancel" id="cancel">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
                 </div>
 
             {% if user.is_authenticated %}

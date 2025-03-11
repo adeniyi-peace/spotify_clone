@@ -166,9 +166,35 @@
     top: -10rem;
 }
 
+.all .about .artist-detail p{
+    width: 100%;
+}
+
 .all .extra{
     height: 0.1px;
     background-color: #141414;
     position: relative;
     margin-top: -22rem;
+}
+
+
+
+@media (max-width: 768px) {
+    .all  .artist-name h1{
+       font-size: 2rem;
+    }
+
+    .all .discograpy .discograpy-container{
+        overflow-x: scroll;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .all  .artist-name h1{
+        font-size: 3.5rem;
+    } 
+
+    .all .profile-image img{
+        height: 75%;
+    }
 }

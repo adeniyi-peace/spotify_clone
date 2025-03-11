@@ -56,3 +56,18 @@ body{
     border-radius: 2rem;
 
 }
+
+@media (max-width: 768px) {
+    .container{
+        width: 90%;
+        padding: 2rem 1rem;
+    }
+
+    .container .form-control input{
+        width: 100%;
+    }
+
+    .container form button{
+        width: 90%;
+    }
+}
