@@ -409,31 +409,53 @@ def search_song(id):
                 artist_name_only  += artist_name+" "
                 
 
-            # Set up yt-dlp options to search for the song
-            ydl_opts = {
-                'format': 'bestaudio/best',  # Best audio quality
-                'quiet': True,  # Suppress output except for essential
-                'extractaudio': True,  # Only extract audio
-                'noplaylist': True,  # Don't download playlists
-                'simulate': True,  # Don't download, just simulate and get metadata
-                'force_generic_extractor': True,  # Use the generic extractor
-                'cookiefile': 'cookies.txt',  # Path to your exported cookies
-            }
+            # # Set up yt-dlp options to search for the song
+            # ydl_opts = {
+            #     'format': 'bestaudio/best',  # Best audio quality
+            #     'quiet': True,  # Suppress output except for essential
+            #     'extractaudio': True,  # Only extract audio
+            #     'noplaylist': True,  # Don't download playlists
+            #     'simulate': True,  # Don't download, just simulate and get metadata
+            #     'force_generic_extractor': True,  # Use the generic extractor
+            #     'cookies_from_browser': ('chrome', "firefox"),
+            #     'cookiefile': 'cookies.txt',  # Path to your exported cookies
+            # }
 
-            # Construct the search query
-            query = f"{name} {artist_name_only}"
+            # # Construct the search query
+            # query = f"{name} {artist_name_only}"
 
-            # Use yt-dlp to search and get the video information
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                info = ydl.extract_info(f"ytsearch:{query}", download=False)
+            # # Use yt-dlp to search and get the video information
+            # with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            #     info = ydl.extract_info(f"ytsearch:{query}", download=False)
                 
-                if 'entries' in info:
-                    # Grab the first video result
-                    video = info['entries'][0]
-                    video_url = video['url']  # This is the video URL
-                    return {"name":name, "cover_image":cover_image, 
-                            "artists":artists, "duration":duration, "audio_url":video_url}
-                return None
+            #     if 'entries' in info:
+            #         # Grab the first video result
+            #         video = info['entries'][0]
+            #         video_url = video['url']  # This is the video URL
+            #         return {"name":name, "cover_image":cover_image, 
+            #                 "artists":artists, "duration":duration, "audio_url":video_url}
+
+            url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
+
+            querystring = {"track":f"{name} {artist_name_only}","quality":"sq"}
+
+            headers = {
+                "x-rapidapi-key": api_key,
+                "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+            }
+            
+            response = requests.get(url, headers=headers, params=querystring)
+
+            if response.status_code == 200:
+                response_data = response.json()
+                audio_url = response_data["soundcloudTrack"]["audio"][0].get("url")
+                return {"name":name, "cover_image":cover_image, 
+                            "artists":artists, "duration":duration, "audio_url":audio_url}
+            
+            else:
+                return {"name":name, "cover_image":cover_image, 
+                            "artists":artists, "duration":duration, "audio_url":"https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3"}
+        
         else:
             print("Error getting song data")
             return None
