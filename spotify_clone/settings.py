@@ -26,7 +26,7 @@ SECRET_KEY = getenv("secret_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = getenv("IS_DEVELOPMENT", True)
 
-ALLOWED_HOSTS = [getenv("APP_HOST"),"192.168.255.121"]
+ALLOWED_HOSTS = [getenv("RENDER_EXTERNAL_HOSTNAME", ""),"192.168.255.121"]
 
 
 # Application definition
