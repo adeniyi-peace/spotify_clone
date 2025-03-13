@@ -420,10 +420,26 @@ def search_song(id):
             #     'cookies_from_browser': ('chrome', "firefox"),
             #     'cookiefile': 'cookies.txt',  # Path to your exported cookies
             # }
+            # # Set up yt-dlp options to search for the song
+            # ydl_opts = {
+            #     'format': 'bestaudio/best',  # Best audio quality
+            #     'quiet': True,  # Suppress output except for essential
+            #     'extractaudio': True,  # Only extract audio
+            #     'noplaylist': True,  # Don't download playlists
+            #     'simulate': True,  # Don't download, just simulate and get metadata
+            #     'force_generic_extractor': True,  # Use the generic extractor
+            #     'cookies_from_browser': ('chrome', "firefox"),
+            #     'cookiefile': 'cookies.txt',  # Path to your exported cookies
+            # }
 
             # # Construct the search query
             # query = f"{name} {artist_name_only}"
+            # # Construct the search query
+            # query = f"{name} {artist_name_only}"
 
+            # # Use yt-dlp to search and get the video information
+            # with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            #     info = ydl.extract_info(f"ytsearch:{query}", download=False)
             # # Use yt-dlp to search and get the video information
             # with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             #     info = ydl.extract_info(f"ytsearch:{query}", download=False)
