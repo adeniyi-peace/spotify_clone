@@ -411,14 +411,13 @@ def search_song(id):
 
             # Set up yt-dlp options to search for the song
             ydl_opts = {
-                'cookies_from_browser': ('chrome',),
                 'format': 'bestaudio/best',  # Best audio quality
                 'quiet': True,  # Suppress output except for essential
                 'extractaudio': True,  # Only extract audio
                 'noplaylist': True,  # Don't download playlists
                 'simulate': True,  # Don't download, just simulate and get metadata
                 'force_generic_extractor': True,  # Use the generic extractor
-                'extractor_args': {'youtube': {'player_client': ['web']}},
+                'cookiefile': 'cookies.txt',  # Path to your exported cookies
             }
 
             # Construct the search query
