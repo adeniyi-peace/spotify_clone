@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import yt_dlp
-from .environ import api_key
+from ..environ import api_key
 
 
 
