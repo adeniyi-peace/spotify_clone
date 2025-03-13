@@ -411,6 +411,7 @@ def search_song(id):
 
             # Set up yt-dlp options to search for the song
             ydl_opts = {
+                'cookies_from_browser': ('chrome',),
                 'format': 'bestaudio/best',  # Best audio quality
                 'quiet': True,  # Suppress output except for essential
                 'extractaudio': True,  # Only extract audio
